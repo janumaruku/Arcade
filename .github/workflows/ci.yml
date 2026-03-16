@@ -186,7 +186,7 @@ jobs:
           exit 84
 
 
-  static_analisys:
+  static_analysis:
     name: Static analysis with clang tidy
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
@@ -253,6 +253,7 @@ jobs:
   push_to_mirror:
     needs:
       - check_coding_style
+      - static_analysis
     if: ${{ github.repository_owner == vars.USERNAME }}
     runs-on: ubuntu-latest
     steps:
