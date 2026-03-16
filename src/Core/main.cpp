@@ -7,9 +7,11 @@
 
 #include <iostream>
 
+#include "test_lib.hpp"
+
 int main()
 {
-    std::cout << "Hello World!" << std::endl;
+    myEntryPoint();
 
     return 0;
 }

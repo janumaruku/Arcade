@@ -1,0 +1,5 @@
+add_library(dynamic_library_loader STATIC DynamicLibraryLoader.cpp)
+
+target_include_directories(dynamic_library_loader PUBLIC .)
+
+target_link_libraries(dynamic_library_loader warning_options)
