@@ -6,7 +6,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_library(warning_options INTERFACE)
+add_library(warning_options INTERFACE
+        game.hpp
+        test.cpp)
 
 target_compile_options(warning_options INTERFACE -Wall -Wextra -Werror)
 

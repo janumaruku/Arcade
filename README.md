@@ -5,7 +5,7 @@ Arcade is a **gaming platform**: a program that lets the user choose a game to p
 
 - The **Display Module**: which deals with graphics (window, shape drawing) and events (mouse events, keyboard events, ...). It provides an interface to the **Core module**, and this interface provides features like create a window, open the window, draw and display figures on the window, get events on that window, and many other features.
 
-- The **Core Module**: It's the orchestrator of the whole program. Every is handled there, including game libraries and graphic libraries. The Core starts with a graphic library, chosen at the start. It loads the libraries, located at a given path. It manages multiple views: main menu view, in game menu view, game view, and maybe other (settings, ...). It builds the game view using the game interface. It gets events from the graphic interface and sends them back to the game instance. It gets new game states per frame and displays them using the graphic interface.
+- The **Core Module**: It's the orchestrator of the whole program. Everything is handled there, including game libraries and graphic libraries. The Core starts with a graphic library, chosen at the start. It loads the libraries, located at a given path. It manages multiple views: main menu view, in game menu view, game view, and maybe other (settings, ...). It builds the game view using the game interface. It gets events from the graphic interface and sends them back to the game instance. It gets new game states per frame and displays them using the graphic interface.
 
 ## Project description
 To be able to deal with the game platform at run-time, the graphic libraries and the games must be implemented as **dynamic libraries**, loaded at runtime.
