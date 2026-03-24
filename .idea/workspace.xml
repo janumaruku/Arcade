@@ -32,6 +32,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
+      <config projectName="myftp" targetName="game_interface" />
       <config projectName="myftp" targetName="widget" />
       <config projectName="myftp" targetName="arcade" />
     </generated>
@@ -42,24 +43,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb65734-5925-47aa-b4e7-55b8995d1ee7" name="Changes" comment="feat(widget): ACP-4 #comment Add widget system with base classes and utilities&#10;&#10;Added widget system containing `Text`, `Tile`, `Rectangle`, and `TileGrid` classes. Introduced event handling, resource management, and unit adjustments for flexibility.">
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Units.cpp.E8B810DFD3966C0A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Units.hpp.C921D70F619F665A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Widget.cpp.725159EC31400285.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Widget.hpp.773540EA4A655D3E.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/main.cpp.65E4B80E9F9441D0.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/arcade.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Widget/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Widget/Units.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Widget/Widget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Widget/include/Units.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Widget/include/Widget.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+    <list default="true" id="1eb65734-5925-47aa-b4e7-55b8995d1ee7" name="Changes" comment="fix: ACP-4 #comment Resolve merge conflict">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,14 +52,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="90" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -104,6 +93,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.arcade.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -144,6 +134,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="game_interface" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="game_interface" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="widget" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="widget" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -152,6 +147,7 @@
     <list>
       <item itemvalue="CMake Application.widget" />
       <item itemvalue="CMake Application.arcade" />
+      <item itemvalue="CMake Application.game_interface" />
     </list>
   </component>
   <component name="RustProjectSettings">
@@ -175,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774392222716</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: ACP-4 #comment Resolve merge conflict">
+      <option name="closed" value="true" />
+      <created>1774394792751</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1774394792751</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +192,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(widget): ACP-4 #comment Add widget system with base classes and utilities&#10;&#10;Added widget system containing `Text`, `Tile`, `Rectangle`, and `TileGrid` classes. Introduced event handling, resource management, and unit adjustments for flexibility." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(widget): ACP-4 #comment Add widget system with base classes and utilities&#10;&#10;Added widget system containing `Text`, `Tile`, `Rectangle`, and `TileGrid` classes. Introduced event handling, resource management, and unit adjustments for flexibility." />
+    <MESSAGE value="fix: ACP-4 #comment Resolve merge conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: ACP-4 #comment Resolve merge conflict" />
   </component>
 </project>
