@@ -7,6 +7,7 @@
 
 #ifndef MYFTP_UNITS_HPP
 #define MYFTP_UNITS_HPP
+#include <cstddef>
 
 namespace arcade {
 namespace widget {
@@ -26,7 +27,7 @@ public:
 
     virtual ~AUnit() = 0;
 
-    [[nodiscard]] unsigned int getValue() const noexcept;
+    [[nodiscard]] int getValue() const noexcept;
 
 protected:
     int _value{0};
@@ -34,7 +35,7 @@ protected:
 
 class CellUnit: public AUnit {
 public:
-    explicit CellUnit(const int &value);
+    CellUnit(const int &value);
 
     ~CellUnit() override = default;
 };

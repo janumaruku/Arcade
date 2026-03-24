@@ -1,4 +1,5 @@
-add_library(widget STATIC Units.cpp)
+add_library(widget STATIC Units.cpp
+        Widget.cpp)
 
 target_include_directories(widget PUBLIC include)
 

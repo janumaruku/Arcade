@@ -14,7 +14,7 @@ AUnit::AUnit(const int &value): _value(value)
 
 AUnit::~AUnit() = default;
 
-unsigned int AUnit::getValue() const noexcept
+int AUnit::getValue() const noexcept
 {
     return _value;
 }
