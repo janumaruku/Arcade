@@ -49,3 +49,6 @@ cs-checker.sh
 # build files
 cmake-build-debug/
 build/
+
+# useless files
+doc.md
