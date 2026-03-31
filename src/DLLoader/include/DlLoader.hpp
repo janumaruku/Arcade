@@ -14,12 +14,13 @@
 
 namespace utils {
 
-//template <typename Object>
 class DLLoader {
 public:
     DLLoader() = default;
 
-    explicit DLLoader(const std::string &path);
+    ~DLLoader();
+
+    void loadLibrary(const std::string &path);
 
     template <typename Object>
     std::unique_ptr<Object> getInstance(const std::string &symbol)
@@ -29,14 +30,28 @@ public:
         if (result == nullptr)
             throw std::runtime_error{symbol + ": " + std::string{dlerror()}};
 
-        using EntryPoint      = Object *(*)();
-        EntryPoint entryPoint = entryPoint = dynamic_cast<EntryPoint>(result);
+        using EntryPoint = Object *(*)();
+        auto entryPoint  = dynamic_cast<EntryPoint>(result);
         if (entryPoint == nullptr)
             throw std::runtime_error{"Incorrect type in template parameter."};
 
         std::unique_ptr<Object> instance{entryPoint(), delFunc};
+        return instance;
+    }
 
-        return nullptr;
+    template <typename FuncType>
+    FuncType getSymbol(const std::string &symbol)
+    {
+        void *result = dlsym(_handle, symbol.c_str());
+
+        if (result == nullptr)
+            throw std::runtime_error{symbol + ": " + std::string{dlerror()}};
+
+        auto func = dynamic_cast<FuncType>(result);
+        if (func == nullptr)
+            throw std::runtime_error{"Incorrect type in template parameter."};
+
+        return func;
     }
 
 private:
