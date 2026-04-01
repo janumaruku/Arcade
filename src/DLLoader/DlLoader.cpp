@@ -12,12 +12,18 @@
 
 namespace utils {
 DLLoader::DLLoader(DLLoader &&loader) noexcept: _handle{loader._handle}
-{}
+{
+    _handle = nullptr;
+}
 
 DLLoader &DLLoader::operator=(DLLoader &&loader) noexcept
 {
-    _handle = loader._handle;
-
+    if (this != &loader) {
+        if (_handle != nullptr)
+            ::dlclose(_handle);
+        _handle = loader._handle;
+        loader._handle = nullptr;
+    }
     return *this;
 }
 
