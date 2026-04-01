@@ -22,7 +22,7 @@ void NcursesDisplay::openWindow(const widget::Vec2 &/*size*/) noexcept
 
 bool NcursesDisplay::isOpen() const noexcept
 {
-    return false;
+    return _isOpen;
 }
 
 void NcursesDisplay::draw(const widget::AWidget &/*widget*/)

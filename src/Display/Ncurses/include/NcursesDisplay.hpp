@@ -42,6 +42,9 @@ public:
     bool pollEvent(widget::Event &event) override;
 
     [[nodiscard]] const std::string &getName() const noexcept override;
+
+private:
+    bool _isOpen{false};
 };
 
 } // display
