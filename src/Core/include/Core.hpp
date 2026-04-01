@@ -24,6 +24,7 @@ private:
     display::IDisplayModule *_currentDisplay;
 
     void loadLibrary(const std::string &libraryPath);
+    void loadLibraries();
 };
 
 } // core

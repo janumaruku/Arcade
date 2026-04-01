@@ -19,6 +19,7 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
@@ -47,8 +48,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9292cd1f-b9b2-4f0d-98e2-668ceb8cf037" name="Changes" comment="chore: ACP-11 #comment Add core in main for test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/include/Core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/include/Core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DLLoader/DlLoader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/DLLoader/DlLoader.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +112,7 @@
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
@@ -166,8 +170,8 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.arcade" />
-      <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.display_interface" />
+      <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.game_interface" />
       <item itemvalue="CMake Application.widget" />
     </list>
@@ -185,6 +189,8 @@
       <workItem from="1774953718146" duration="868000" />
       <workItem from="1774960294742" duration="315000" />
       <workItem from="1775045942881" duration="3968000" />
+      <workItem from="1775053416397" duration="25000" />
+      <workItem from="1775054640552" duration="762000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ACP-11 fix syntax error on closeWindow method signature">
       <option name="closed" value="true" />
