@@ -6,9 +6,10 @@
 
 namespace arcade {
 namespace core {
-Core::Core(const std::string &/*libraryPath*/)
+Core::Core(const std::string &libraryPath)
 {
-    loadLibrary("libraryPath");
+    loadLibrary(libraryPath);
+    _currentDisplay = _displayLibraries[libraryPath].get();
 }
 
 void Core::loadLibrary(const std::string &libraryPath)

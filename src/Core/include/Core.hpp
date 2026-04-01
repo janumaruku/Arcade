@@ -15,14 +15,13 @@ public:
     explicit Core(const std::string &libraryPath);
 
 private:
-    // utils::DLLoader _initialDisplayLibLoader;
-    // std::unique_ptr<display::IDisplayModule> _initialDisplayLib;
     std::unordered_map<std::string, utils::DLLoader> _gameLoaders;
     std::unordered_map<std::string, utils::DLLoader> _displayLoaders;
     std::unordered_map<std::string, std::unique_ptr<game::IGameModule>>
     _gameLibraries;
     std::unordered_map<std::string, std::unique_ptr<display::IDisplayModule>>
     _displayLibraries;
+    display::IDisplayModule *_currentDisplay;
 
     void loadLibrary(const std::string &libraryPath);
 };
