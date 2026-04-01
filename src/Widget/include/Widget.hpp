@@ -8,7 +8,6 @@
 #ifndef WIDGET_HPP_
 #define WIDGET_HPP_
 
-#include <cstdint>
 #include <forward_list>
 #include <memory>
 #include <string>
@@ -36,7 +35,7 @@ struct Vec2 {
     CellUnit y;
 };
 
-enum class WidgetType: uint8_t {
+enum class WidgetType : uint8_t {
     UNKNOWN = 0,
     TEXT,
     TILE,
@@ -103,7 +102,7 @@ private:
     std::size_t _column = 0;
 };
 
-enum class KeyCode: int8_t {
+enum class KeyCode : int8_t {
     UNKNOWN = -1,
     KEY_A,
     KEY_B,
@@ -163,7 +162,7 @@ enum class KeyCode: int8_t {
     COUNT
 };
 
-enum class MouseButton: uint8_t {
+enum class MouseButton : uint8_t {
     NONE = 0,
     LEFT,
     RIGHT,
@@ -185,7 +184,7 @@ public:
         int y              = 0;
     };
 
-    enum class EventType: uint8_t {
+    enum class EventType : uint8_t {
         NONE = 0,
         CLOSED,
         KEY_PRESSED,

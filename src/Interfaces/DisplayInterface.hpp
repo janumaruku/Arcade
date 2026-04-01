@@ -16,8 +16,6 @@ namespace arcade {
 namespace display {
 class IDisplayModule {
 public:
-    IDisplayModule() = default;
-
     virtual ~IDisplayModule() = default;
 
     virtual void closeWindow() noexcept = 0;
@@ -42,7 +40,7 @@ public:
 
     virtual bool pollEvent(widget::Event &event) = 0;
 
-    virtual const std::string &getName() const noexcept = 0;
+    [[nodiscard]] virtual const std::string &getName() const noexcept = 0;
 };
 } // namespace display
 } // namespace arcade
