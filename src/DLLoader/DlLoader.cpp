@@ -11,8 +11,20 @@
 #include <iostream>
 
 namespace utils {
+DLLoader::DLLoader(DLLoader &&loader) noexcept: _handle{loader._handle}
+{}
+
+DLLoader &DLLoader::operator=(DLLoader &&loader) noexcept
+{
+    _handle = loader._handle;
+
+    return *this;
+}
+
 DLLoader::~DLLoader()
 {
+    if (_handle == nullptr)
+        return;
     if (::dlclose(_handle) != 0)
         std::cerr << "Error: " << ::dlerror() << std::endl;
 }
