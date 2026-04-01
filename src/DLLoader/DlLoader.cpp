@@ -13,7 +13,7 @@
 namespace utils {
 DLLoader::DLLoader(DLLoader &&loader) noexcept: _handle{loader._handle}
 {
-    _handle = nullptr;
+    loader._handle = nullptr;
 }
 
 DLLoader &DLLoader::operator=(DLLoader &&loader) noexcept
