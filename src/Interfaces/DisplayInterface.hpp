@@ -20,7 +20,7 @@ public:
 
     virtual ~IDisplayModule() = default;
 
-    virtual void closeWindow() noexcept = default;
+    virtual void closeWindow() noexcept = 0;
 
     virtual void openWindow() noexcept = 0;
 
