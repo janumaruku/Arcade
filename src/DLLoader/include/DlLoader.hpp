@@ -18,6 +18,12 @@ class DLLoader {
 public:
     DLLoader() = default;
 
+    DLLoader(const DLLoader &loader) = default;
+
+    DLLoader(DLLoader &&loader) noexcept;
+
+    DLLoader &operator=(DLLoader &&loader) noexcept;
+
     ~DLLoader();
 
     void loadLibrary(const std::string &path);
@@ -31,11 +37,10 @@ public:
             throw std::runtime_error{symbol + ": " + std::string{dlerror()}};
 
         using EntryPoint = Object *(*)();
-        auto entryPoint  = dynamic_cast<EntryPoint>(result);
-        if (entryPoint == nullptr)
-            throw std::runtime_error{"Incorrect type in template parameter."};
+        auto entryPoint  = reinterpret_cast<EntryPoint>(result);
 
-        std::unique_ptr<Object> instance{entryPoint(), delFunc};
+        Object *object = entryPoint();
+        std::unique_ptr<Object> instance{object};
         return instance;
     }
 
@@ -47,11 +52,7 @@ public:
         if (result == nullptr)
             throw std::runtime_error{symbol + ": " + std::string{dlerror()}};
 
-        auto func = dynamic_cast<FuncType>(result);
-        if (func == nullptr)
-            throw std::runtime_error{"Incorrect type in template parameter."};
-
-        return func;
+        return reinterpret_cast<FuncType>(result);
     }
 
 private:
