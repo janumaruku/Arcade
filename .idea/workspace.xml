@@ -32,7 +32,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="chore(Widget): ACP-21 #comment remove unused includes">
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay">
+      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" afterDir="false" />
     </list>
@@ -105,6 +106,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Display/Ncurses/include" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.arcade">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -157,7 +163,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1775075448239</updated>
-      <workItem from="1775075449701" duration="3655000" />
+      <workItem from="1775075449701" duration="8391000" />
     </task>
     <task id="LOCAL-00001" summary="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation">
       <option name="closed" value="true" />
@@ -175,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775078340331</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay">
+      <option name="closed" value="true" />
+      <created>1775079182533</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775079182533</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +204,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation" />
     <MESSAGE value="chore(Widget): ACP-21 #comment remove unused includes" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(Widget): ACP-21 #comment remove unused includes" />
+    <MESSAGE value="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay" />
   </component>
 </project>

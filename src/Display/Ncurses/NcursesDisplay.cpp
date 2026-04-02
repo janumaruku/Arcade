@@ -17,8 +17,16 @@ void NcursesDisplay::closeWindow() noexcept
 void NcursesDisplay::openWindow() noexcept
 {}
 
-void NcursesDisplay::openWindow(const widget::Vec2 &/*size*/) noexcept
-{}
+void NcursesDisplay::openWindow(const widget::Vec2 &size) noexcept
+{
+    if (_isOpen)
+        return;
+
+    setlocale(LC_ALL, "");
+    initNcurses();
+    _isOpen = true;
+    openWindowImpl(size.x, size.y);
+}
 
 bool NcursesDisplay::isOpen() const noexcept
 {
@@ -53,6 +61,33 @@ bool NcursesDisplay::pollEvent(widget::Event &/*event*/)
 const std::string & NcursesDisplay::getName() const noexcept
 {
     return "Ncurses";
+}
+
+void NcursesDisplay::initNcurses()
+{
+    initscr();
+    noecho();
+    curs_set(0);
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
+}
+
+void NcursesDisplay::openWindowImpl(const CellUnitView &x,
+    const CellUnitView &y)
+{
+    int row = y;
+    int col = x;
+
+    if (row == 0 || col == 0)
+        getmaxyx(stdscr, row, col);
+
+    _window.reset(newwin(col, row, 0, 0));
+    box(_window.get(), 0, 0);
+    mvwprintw(_window.get(), 0, 0, "╭");
+    mvwprintw(_window.get(), 0, col - 1, "╮");
+    mvwprintw(_window.get(), row - 1, 0, "╰");
+    mvwprintw(_window.get(), row - 1, col - 1, "╯");
+    mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
 }
 } // namespace display
 } // namespace arcade

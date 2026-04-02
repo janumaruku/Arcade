@@ -1,4 +1,5 @@
-add_library(arcade_ncurses SHARED NcursesDisplay.cpp)
+add_library(arcade_ncurses SHARED NcursesDisplay.cpp
+        UnitView.cpp)
 
 target_include_directories(arcade_ncurses PUBLIC include)
 
