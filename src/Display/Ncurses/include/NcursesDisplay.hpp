@@ -9,8 +9,10 @@
 #define MYFTP_NCURSESDISPLAY_HPP
 
 #include <iostream>
+#include <ncurses.h>
 
 #include "DisplayInterface.hpp"
+#include "UnitView.hpp"
 
 namespace arcade {
 namespace display {
@@ -42,6 +44,19 @@ public:
     bool pollEvent(widget::Event &event) override;
 
     [[nodiscard]] const std::string &getName() const noexcept override;
+
+private:
+    std::string _libName     = "Ncurses";
+    std::string _windowTitle = "Arcade";
+    bool _isOpen{false};
+    double _frameRate = 0;
+    int _row = 0;
+    int _col = 0;
+    std::unique_ptr<WINDOW, decltype(&delwin)> _window{nullptr, delwin};
+
+    static void initNcurses();
+
+    void openWindowImpl(const CellUnitView &x, const CellUnitView &y);
 };
 
 } // display
