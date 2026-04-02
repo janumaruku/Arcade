@@ -46,6 +46,7 @@ public:
     [[nodiscard]] const std::string &getName() const noexcept override;
 
 private:
+    std::string _libName = "Ncurses";
     std::string _windowTitle = "Arcade";
     bool _isOpen{false};
     double _frameRate = 0;

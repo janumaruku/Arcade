@@ -22,6 +22,10 @@ public:
 
     CellUnitView(widget::CellUnit &&unit);
 
+    CellUnitView(const int &value);
+
+    CellUnitView(int &&value);
+
     operator int() const noexcept;
 
 private:

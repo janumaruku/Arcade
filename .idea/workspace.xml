@@ -32,10 +32,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay">
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-22 #comment implement openWindow functionality for NcursesDisplay with ncurses initialization">
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/UnitView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/UnitView.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/UnitView.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/UnitView.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +50,7 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="156" />
+    <option name="cachedIndexableFilesCount" value="173" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
@@ -163,7 +167,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1775075448239</updated>
-      <workItem from="1775075449701" duration="8391000" />
+      <workItem from="1775075449701" duration="10497000" />
     </task>
     <task id="LOCAL-00001" summary="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation">
       <option name="closed" value="true" />
@@ -189,7 +193,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775079182533</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(Display): ACP-22 #comment add CellUnitView class for Ncurses display integration">
+      <option name="closed" value="true" />
+      <created>1775110724112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775110724112</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(Display): ACP-22 #comment implement openWindow functionality for NcursesDisplay with ncurses initialization">
+      <option name="closed" value="true" />
+      <created>1775110771644</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775110771644</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +225,8 @@
     <MESSAGE value="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation" />
     <MESSAGE value="chore(Widget): ACP-21 #comment remove unused includes" />
     <MESSAGE value="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-22 #comment implement isOpen method for NcursesDisplay" />
+    <MESSAGE value="feat(Display): ACP-22 #comment add CellUnitView class for Ncurses display integration" />
+    <MESSAGE value="feat(Display): ACP-22 #comment implement openWindow functionality for NcursesDisplay with ncurses initialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-22 #comment implement openWindow functionality for NcursesDisplay with ncurses initialization" />
   </component>
 </project>
