@@ -88,6 +88,7 @@ void NcursesDisplay::openWindowImpl(const CellUnitView &x,
 
     if (row == 0 || col == 0)
         getmaxyx(stdscr, row, col);
+    _frameRate = 1.0 / 60.0;
 
     _window.reset(newwin(row, col, 0, 0));
     box(_window.get(), 0, 0);
