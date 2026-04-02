@@ -64,7 +64,7 @@ void NcursesDisplay::loadResource(const widget::Resource &/*resources*/)
 
 widget::Vec2 NcursesDisplay::getWindowSize() const noexcept
 {
-    return {.x = 0, .y = 0};
+    return {.x = _col, .y = _row};
 }
 
 bool NcursesDisplay::pollEvent(widget::Event &/*event*/)
