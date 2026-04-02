@@ -12,7 +12,13 @@ namespace display {
 NcursesDisplay::~NcursesDisplay() = default;
 
 void NcursesDisplay::closeWindow() noexcept
-{}
+{
+    if (!_isOpen)
+        return;
+
+    endwin();
+    _isOpen = false;
+}
 
 void NcursesDisplay::openWindow() noexcept
 {
@@ -83,19 +89,19 @@ void NcursesDisplay::initNcurses()
 void NcursesDisplay::openWindowImpl(const CellUnitView &x,
     const CellUnitView &y)
 {
-    int row = y;
-    int col = x;
+    _row = y;
+    _col = x;
 
-    if (row == 0 || col == 0)
-        getmaxyx(stdscr, row, col);
+    if (_row == 0 || _col == 0)
+        getmaxyx(stdscr, _row, _col);
     _frameRate = 1.0 / 60.0;
 
-    _window.reset(newwin(row, col, 0, 0));
+    _window.reset(newwin(_row, _col, 0, 0));
     box(_window.get(), 0, 0);
     mvwprintw(_window.get(), 0, 0, "╭");
-    mvwprintw(_window.get(), 0, col - 1, "╮");
-    mvwprintw(_window.get(), row - 1, 0, "╰");
-    mvwprintw(_window.get(), row - 1, col - 1, "╯");
+    mvwprintw(_window.get(), 0, _col - 1, "╮");
+    mvwprintw(_window.get(), _row - 1, 0, "╰");
+    mvwprintw(_window.get(), _row - 1, _col - 1, "╯");
     mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
     refresh();
     wrefresh(_window.get());
