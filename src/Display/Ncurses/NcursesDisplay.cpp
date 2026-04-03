@@ -51,7 +51,14 @@ void NcursesDisplay::draw(const widget::AWidget &/*widget*/)
 {}
 
 void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
-{}
+{
+    if (!_isOpen)
+        return;
+
+    wclear(_window.get());
+    dispWindowBox();
+    refresh();
+}
 
 void NcursesDisplay::display() noexcept
 {}
@@ -88,6 +95,16 @@ void NcursesDisplay::initNcurses()
     nodelay(stdscr, TRUE);
 }
 
+void NcursesDisplay::dispWindowBox() const
+{
+    box(_window.get(), 0, 0);
+    mvwprintw(_window.get(), 0, 0, "╭");
+    mvwprintw(_window.get(), 0, _col - 1, "╮");
+    mvwprintw(_window.get(), _row - 1, 0, "╰");
+    mvwprintw(_window.get(), _row - 1, _col - 1, "╯");
+    mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
+}
+
 void NcursesDisplay::openWindowImpl(const CellUnitView &x,
     const CellUnitView &y)
 {
@@ -99,12 +116,7 @@ void NcursesDisplay::openWindowImpl(const CellUnitView &x,
     _frameRate = 1.0 / 60.0;
 
     _window.reset(newwin(_row, _col, 0, 0));
-    box(_window.get(), 0, 0);
-    mvwprintw(_window.get(), 0, 0, "╭");
-    mvwprintw(_window.get(), 0, _col - 1, "╮");
-    mvwprintw(_window.get(), _row - 1, 0, "╰");
-    mvwprintw(_window.get(), _row - 1, _col - 1, "╯");
-    mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
+    dispWindowBox();
     refresh();
     wrefresh(_window.get());
 }

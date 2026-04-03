@@ -67,6 +67,8 @@ private:
 
     static void initNcurses();
 
+    void dispWindowBox() const;
+
     void openWindowImpl(const CellUnitView &x, const CellUnitView &y);
 
     void draw(const widget::Text &text);
