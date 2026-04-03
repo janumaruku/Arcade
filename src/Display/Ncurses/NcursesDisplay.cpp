@@ -18,6 +18,9 @@ void NcursesDisplay::closeWindow() noexcept
     if (!_isOpen)
         return;
 
+    printf("\033[?1003l");
+    printf("\033[?1006l");
+    fflush(stdout);
     endwin();
     _isOpen = false;
 }
@@ -162,6 +165,8 @@ void NcursesDisplay::openWindowImpl(const CellUnitView &xAxis,
     _frameRate = 1.0 / 60.0;
 
     _window.reset(newwin(_row, _col, 0, 0));
+    keypad(_window.get(), TRUE);
+    nodelay(_window.get(), TRUE);
     dispWindowBox();
     refresh();
     wrefresh(_window.get());
