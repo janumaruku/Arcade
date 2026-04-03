@@ -57,6 +57,7 @@ void NcursesDisplay::draw(const widget::AWidget &widget)
     drawText(widget);
     drawTile(widget);
     drawRectangle(widget);
+    drawTileGrid(widget);
 }
 
 void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
@@ -186,6 +187,19 @@ void NcursesDisplay::drawTile(const widget::AWidget &widget) const
     }
 }
 
+void NcursesDisplay::drawTile(const widget::Tile &tile) const
+{
+    const CellUnitView xAxis = tile.position.x;
+    const CellUnitView yAxis = tile.position.y;
+
+    init_pair(1, _colorMap.at(tile.color),
+        _colorMap.at(tile.backgroundColor));
+
+    wattron(_window.get(), COLOR_PAIR(1));
+    mvwprintw(_window.get(), yAxis, xAxis, "%s", tile.symbol.c_str());
+    wattroff(_window.get(), COLOR_PAIR(1));
+}
+
 void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
 {
     if (widget.type == widget::WidgetType::RECTANGLE) {
@@ -204,6 +218,20 @@ void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
         mvwprintw(_window.get(), yAxis + 1, xAxis + xSize, "%s", "╮");
         mvwprintw(_window.get(), yAxis + ySize, xAxis + 1, "%s", "╰");
         mvwprintw(_window.get(), yAxis + ySize, xAxis + xSize, "%s", "╯");
+    }
+}
+
+void NcursesDisplay::drawTileGrid(const widget::AWidget &widget) const
+{
+    if (widget.type == widget::WidgetType::TILE_GRID) {
+        widget::TileGrid tileGrid = dynamic_cast<const widget::TileGrid &>(
+            widget);
+
+        for (std::size_t i = 0; i < tileGrid.getRow(); ++i) {
+            for (std::size_t j = 0; j < tileGrid.getColumn(); ++j) {
+                drawTile(tileGrid[i][j]);
+            }
+        }
     }
 }
 } // namespace display

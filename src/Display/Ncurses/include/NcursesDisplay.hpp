@@ -79,7 +79,11 @@ private:
 
     void drawTile(const widget::AWidget & widget) const;
 
+    void drawTile(const widget::Tile &tile) const;
+
     void drawRectangle(const widget::AWidget & widget) const;
+
+    void drawTileGrid(const widget::AWidget & widget) const;
 };
 
 } // display
