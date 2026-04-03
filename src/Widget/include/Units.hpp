@@ -29,6 +29,8 @@ public:
 
     [[nodiscard]] int getValue() const noexcept;
 
+    void setValue(const int &value) noexcept;
+
 protected:
     int _value{0};
 };
