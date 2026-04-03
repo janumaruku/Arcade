@@ -8,6 +8,7 @@
 #ifndef MYFTP_NCURSESDISPLAY_HPP
 #define MYFTP_NCURSESDISPLAY_HPP
 
+#include <chrono>
 #include <iostream>
 #include <ncurses.h>
 
@@ -52,6 +53,7 @@ private:
     double _frameRate = 0;
     int _row = 0;
     int _col = 0;
+    std::unique_ptr<SCREEN, decltype(&delscreen)> _screen{nullptr, delscreen};
     std::unique_ptr<WINDOW, decltype(&delwin)> _window{nullptr, delwin};
     const std::unordered_map<widget::Color, int> _colorMap = {
         {widget::Color::TRANSPARENT, -1},
@@ -64,14 +66,18 @@ private:
         {widget::Color::CYAN, COLOR_CYAN},
         {widget::Color::WHITE, COLOR_WHITE},
     };
+    std::chrono::steady_clock::time_point _startTime;
+    std::unique_ptr<SCREEN, decltype(&delscreen)> _screen2{nullptr, delscreen};
 
     static void initNcurses();
 
     void dispWindowBox() const;
 
-    void openWindowImpl(const CellUnitView &x, const CellUnitView &y);
+    void openWindowImpl(const CellUnitView &xAxis, const CellUnitView &yAxis);
 
-    void draw(const widget::Text &text);
+    void drawText(const widget::AWidget &widget) const;
+
+    // auto widgetCast(const widget::AWidget &widget) const;
 };
 
 } // display

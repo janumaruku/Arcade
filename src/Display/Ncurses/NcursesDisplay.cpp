@@ -7,6 +7,8 @@
 
 #include "NcursesDisplay.hpp"
 
+#include <thread>
+
 namespace arcade {
 namespace display {
 NcursesDisplay::~NcursesDisplay() = default;
@@ -47,8 +49,13 @@ bool NcursesDisplay::isOpen() const noexcept
     return _isOpen;
 }
 
-void NcursesDisplay::draw(const widget::AWidget &/*widget*/)
-{}
+void NcursesDisplay::draw(const widget::AWidget &widget)
+{
+    if (!_isOpen)
+        return;
+
+    drawText(widget);
+}
 
 void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
 {
@@ -61,13 +68,35 @@ void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
 }
 
 void NcursesDisplay::display() noexcept
-{}
+{
+    if (!_isOpen)
+        return;
+
+    wrefresh(_window.get());
+    refresh();
+    const std::chrono::steady_clock::time_point timeNow =
+        std::chrono::steady_clock::now();
+    const std::chrono::duration<double> elapsedTime = std::chrono::duration_cast
+        <std::chrono::duration<double>>(timeNow - _startTime);
+
+    if (elapsedTime.count() < _frameRate)
+        std::this_thread::sleep_for(std::chrono::duration<double>
+            (_frameRate - elapsedTime.count()));
+
+    _startTime = std::chrono::steady_clock::now();
+}
 
 void NcursesDisplay::playSound(const std::string &/*soundName*/) noexcept
-{}
+{
+    if (!_isOpen)
+        return;
+}
 
 void NcursesDisplay::loadResource(const widget::Resource &/*resources*/)
-{}
+{
+    if (!_isOpen)
+        return;
+}
 
 widget::Vec2 NcursesDisplay::getWindowSize() const noexcept
 {
@@ -105,11 +134,11 @@ void NcursesDisplay::dispWindowBox() const
     mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
 }
 
-void NcursesDisplay::openWindowImpl(const CellUnitView &x,
-    const CellUnitView &y)
+void NcursesDisplay::openWindowImpl(const CellUnitView &xAxis,
+    const CellUnitView &yAxis)
 {
-    _row = y;
-    _col = x;
+    _row = yAxis;
+    _col = xAxis;
 
     if (_row == 0 || _col == 0)
         getmaxyx(stdscr, _row, _col);
@@ -121,20 +150,21 @@ void NcursesDisplay::openWindowImpl(const CellUnitView &x,
     wrefresh(_window.get());
 }
 
-void NcursesDisplay::draw(const widget::Text &text)
+void NcursesDisplay::drawText(const widget::AWidget &widget) const
 {
-    if (!_isOpen)
-        return;
+    if (widget.type == widget::WidgetType::TEXT) {
+        const auto &text = dynamic_cast<const widget::Text &>(widget);
 
-    const CellUnitView x = text.position.x;
-    const CellUnitView y = text.position.y;
+        const CellUnitView xAxis = text.position.x;
+        const CellUnitView yAxis = text.position.y;
 
-    init_pair(1, _colorMap.at(text.backgroundColor),
-        _colorMap.at(text.textColor));
+        init_pair(1, _colorMap.at(text.backgroundColor),
+            _colorMap.at(text.textColor));
 
-    wattron(_window.get(), COLOR_PAIR(1));
-    mvwprintw(_window.get(), y, x, "%s", text.text.c_str());
-    wattroff(_window.get(), COLOR_PAIR(1));
+        wattron(_window.get(), COLOR_PAIR(1));
+        mvwprintw(_window.get(), yAxis, xAxis, "%s", text.text.c_str());
+        wattroff(_window.get(), COLOR_PAIR(1));
+    }
 }
 } // namespace display
 } // namespace arcade

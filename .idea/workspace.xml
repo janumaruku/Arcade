@@ -5,6 +5,7 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="6" type="long" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
   <component name="CMakePresetLoader">{
@@ -32,7 +33,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-23 #comment Implement draw method for text widget in NcursesDisplay">
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
@@ -47,13 +48,25 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="47" />
+    <option name="cachedIndexableFilesCount" value="50" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "janumaruku"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:janumaruku/Arcade.git",
+    "accountId": "f94d0993-dc90-4f79-9b11-991c9c71d54a"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="2Vwt6msM" />
   </component>
@@ -78,43 +91,43 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.advertisement.text.overridden": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "ACP-23-Handle-shapes-drawing",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ACP-23-Handle-shapes-drawing&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Display/Ncurses/include" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.arcade">
-    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade">
+    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -162,7 +175,8 @@
       <updated>1775075448239</updated>
       <workItem from="1775075449701" duration="24339000" />
       <workItem from="1775180366527" duration="1197000" />
-      <workItem from="1775181833892" duration="4258000" />
+      <workItem from="1775181833892" duration="8464000" />
+      <workItem from="1775208445295" duration="363000" />
     </task>
     <task id="LOCAL-00001" summary="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation">
       <option name="closed" value="true" />
@@ -260,7 +274,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775182387566</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
+      <option name="closed" value="true" />
+      <created>1775203877627</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1775203877627</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
+      <option name="closed" value="true" />
+      <created>1775203882832</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1775203882832</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +316,8 @@
     <MESSAGE value="feat(Display): ACP-22 #comment Implement getWindowSize window for NcursesDisplay." />
     <MESSAGE value="merge: ACP-22 Handle-window-settings&#10;&#10;ACP-22 handle window settings" />
     <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for text widget in NcursesDisplay" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
