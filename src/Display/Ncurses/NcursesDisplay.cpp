@@ -27,7 +27,6 @@ void NcursesDisplay::openWindow() noexcept
     if (_isOpen)
         return;
 
-    setlocale(LC_ALL, "");
     initNcurses();
     _isOpen = true;
     openWindowImpl(0, 0);
@@ -38,7 +37,6 @@ void NcursesDisplay::openWindow(const widget::Vec2 &size) noexcept
     if (_isOpen)
         return;
 
-    setlocale(LC_ALL, "");
     initNcurses();
     _isOpen = true;
     openWindowImpl(size.x, size.y);
@@ -106,9 +104,19 @@ widget::Vec2 NcursesDisplay::getWindowSize() const noexcept
     return {.x = _col, .y = _row};
 }
 
-bool NcursesDisplay::pollEvent(widget::Event &/*event*/)
+bool NcursesDisplay::pollEvent(widget::Event &event)
 {
-    return false;
+    if (!_isOpen)
+        return false;
+
+    int character = wgetch(_window.get());
+
+    if (character == ERR)
+        return false;
+
+    if (character == KEY_MOUSE)
+        return handleKeyMouse(character, event);
+    return handleKey(character, event);
 }
 
 const std::string &NcursesDisplay::getName() const noexcept
@@ -118,6 +126,7 @@ const std::string &NcursesDisplay::getName() const noexcept
 
 void NcursesDisplay::initNcurses()
 {
+    setlocale(LC_ALL, "");
     initscr();
     start_color();
     use_default_colors();
@@ -125,6 +134,11 @@ void NcursesDisplay::initNcurses()
     curs_set(0);
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
+    mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, nullptr);
+    mouseinterval(0);
+    printf("\033[?1003h");
+    printf("\033[?1006h");
+    fflush(stdout);
 }
 
 void NcursesDisplay::dispWindowBox() const
@@ -210,8 +224,10 @@ void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
         const CellUnitView xSize = rectangle.getSize().x;
         const CellUnitView ySize = rectangle.getSize().y;
 
-        const std::unique_ptr<WINDOW, decltype(&delwin)> rect{subwin(_window.get(),
-            ySize, xSize, yAxis + 1, xAxis + 1), delwin};
+        const std::unique_ptr<WINDOW, decltype(&delwin)> rect{
+            subwin(_window.get(),
+                ySize, xSize, yAxis + 1, xAxis + 1),
+            delwin};
         box(rect.get(), 0, 0);
         wrefresh(rect.get());
         mvwprintw(_window.get(), yAxis + 1, xAxis + 1, "%s", "╭");
@@ -233,6 +249,44 @@ void NcursesDisplay::drawTileGrid(const widget::AWidget &widget) const
             }
         }
     }
+}
+
+bool NcursesDisplay::handleKeyMouse(int /*character*/, widget::Event &event)
+{
+    MEVENT mouseEvent;
+
+    if (getmouse(&mouseEvent) != OK)
+        return false;
+
+    if (mouseEvent.bstate & BUTTON1_PRESSED) {
+        event.type = widget::Event::EventType::MOUSE_BUTTON_PRESSED;
+        event.mouseButton.button = widget::MouseButton::LEFT;
+    }
+    if (mouseEvent.bstate & BUTTON1_RELEASED) {
+        event.type = widget::Event::EventType::MOUSE_BUTTON_RELEASED;
+        event.mouseButton.button = widget::MouseButton::LEFT;
+    }
+    if (mouseEvent.bstate & BUTTON3_PRESSED) {
+        event.type = widget::Event::EventType::MOUSE_BUTTON_PRESSED;
+        event.mouseButton.button = widget::MouseButton::RIGHT;
+    }
+    if (mouseEvent.bstate & BUTTON3_RELEASED) {
+        event.type = widget::Event::EventType::MOUSE_BUTTON_RELEASED;
+        event.mouseButton.button = widget::MouseButton::RIGHT;
+    }
+    event.mouseButton.x = mouseEvent.x;
+    event.mouseButton.y = mouseEvent.y;
+    return true;
+}
+
+bool NcursesDisplay::handleKey(const int character, widget::Event &event) const
+{
+    if (!_keys.contains(character))
+        return false;
+
+    event.type     = widget::Event::EventType::KEY_PRESSED;
+    event.key.code = _keys.at(character);
+    return true;
 }
 } // namespace display
 } // namespace arcade
