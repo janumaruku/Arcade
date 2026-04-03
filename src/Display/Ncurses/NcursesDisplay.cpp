@@ -80,6 +80,8 @@ const std::string &NcursesDisplay::getName() const noexcept
 void NcursesDisplay::initNcurses()
 {
     initscr();
+    start_color();
+    use_default_colors();
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
@@ -105,6 +107,22 @@ void NcursesDisplay::openWindowImpl(const CellUnitView &x,
     mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
     refresh();
     wrefresh(_window.get());
+}
+
+void NcursesDisplay::draw(const widget::Text &text)
+{
+    if (!_isOpen)
+        return;
+
+    const CellUnitView x = text.position.x;
+    const CellUnitView y = text.position.y;
+
+    init_pair(1, _colorMap.at(text.backgroundColor),
+        _colorMap.at(text.textColor));
+
+    wattron(_window.get(), COLOR_PAIR(1));
+    mvwprintw(_window.get(), y, x, "%s", text.text.c_str());
+    wattroff(_window.get(), COLOR_PAIR(1));
 }
 } // namespace display
 } // namespace arcade

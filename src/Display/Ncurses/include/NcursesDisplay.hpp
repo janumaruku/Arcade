@@ -53,10 +53,23 @@ private:
     int _row = 0;
     int _col = 0;
     std::unique_ptr<WINDOW, decltype(&delwin)> _window{nullptr, delwin};
+    const std::unordered_map<widget::Color, int> _colorMap = {
+        {widget::Color::TRANSPARENT, -1},
+        {widget::Color::BLACK, COLOR_BLACK},
+        {widget::Color::RED, COLOR_RED},
+        {widget::Color::GREEN, COLOR_GREEN},
+        {widget::Color::YELLOW, COLOR_YELLOW},
+        {widget::Color::BLUE, COLOR_BLUE},
+        {widget::Color::MAGENTA, COLOR_MAGENTA},
+        {widget::Color::CYAN, COLOR_CYAN},
+        {widget::Color::WHITE, COLOR_WHITE},
+    };
 
     static void initNcurses();
 
     void openWindowImpl(const CellUnitView &x, const CellUnitView &y);
+
+    void draw(const widget::Text &text);
 };
 
 } // display
