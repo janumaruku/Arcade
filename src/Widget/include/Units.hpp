@@ -49,7 +49,7 @@ public:
 
 class WeightUnit: public AUnit {
 public:
-    explicit WeightUnit(const int &value);
+    WeightUnit(const int &value);
 
     ~WeightUnit() override = default;
 };

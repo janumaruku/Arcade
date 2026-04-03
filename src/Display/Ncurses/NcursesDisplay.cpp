@@ -56,6 +56,7 @@ void NcursesDisplay::draw(const widget::AWidget &widget)
 
     drawText(widget);
     drawTile(widget);
+    drawRectangle(widget);
 }
 
 void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
@@ -182,6 +183,27 @@ void NcursesDisplay::drawTile(const widget::AWidget &widget) const
         wattron(_window.get(), COLOR_PAIR(1));
         mvwprintw(_window.get(), yAxis, xAxis, "%s", tile.symbol.c_str());
         wattroff(_window.get(), COLOR_PAIR(1));
+    }
+}
+
+void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
+{
+    if (widget.type == widget::WidgetType::RECTANGLE) {
+        const auto &rectangle = dynamic_cast<const widget::Rectangle &>(widget);
+
+        const CellUnitView xAxis = rectangle.position.x;
+        const CellUnitView yAxis = rectangle.position.y;
+        const CellUnitView xSize = rectangle.getSize().x;
+        const CellUnitView ySize = rectangle.getSize().y;
+
+        const std::unique_ptr<WINDOW, decltype(&delwin)> rect{subwin(_window.get(),
+            ySize, xSize, yAxis + 1, xAxis + 1), delwin};
+        box(rect.get(), 0, 0);
+        wrefresh(rect.get());
+        mvwprintw(_window.get(), yAxis + 1, xAxis + 1, "%s", "╭");
+        mvwprintw(_window.get(), yAxis + 1, xAxis + xSize, "%s", "╮");
+        mvwprintw(_window.get(), yAxis + ySize, xAxis + 1, "%s", "╰");
+        mvwprintw(_window.get(), yAxis + ySize, xAxis + xSize, "%s", "╯");
     }
 }
 } // namespace display
