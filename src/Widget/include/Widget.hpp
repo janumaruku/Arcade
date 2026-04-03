@@ -63,7 +63,7 @@ struct Tile: AWidget {
     std::string symbol = " ";
     std::string textureName;
     Color color           = Color::WHITE;
-    Color backgroundColor = Color::BLACK;
+    Color backgroundColor = Color::TRANSPARENT;
 };
 
 enum class BorderStyle : uint8_t {
@@ -89,7 +89,7 @@ struct Rectangle: AWidget {
     Color fillColor = Color::BLACK;
     std::string textureName;
 
-private:
+protected:
     Vec2 _size = {.x = CellUnit{0}, .y = CellUnit{0}};
 };
 
@@ -97,6 +97,10 @@ struct TileGrid: Rectangle {
     explicit TileGrid(const std::size_t &row, const std::size_t &column);
 
     std::vector<Tile> &operator[](const std::size_t &row);
+
+    std::size_t getRow() const noexcept;
+
+    std::size_t getColumn() const noexcept;
 
 private:
     std::vector<std::vector<Tile>> _widgets;
@@ -214,6 +218,8 @@ struct Resource {
     std::unordered_map<std::string, std::string> textures;
     std::unordered_map<std::string, std::string> sounds;
 };
+
+CellUnit operator+(const CellUnit &lhs, const int &rhs);
 } // namespace widget
 } // namespace arcade
 

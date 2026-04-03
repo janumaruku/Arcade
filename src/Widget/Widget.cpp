@@ -29,13 +29,38 @@ TileGrid::TileGrid(const std::size_t &row, const std::size_t &column):
 {
     _widgets.resize(_row);
 
-    for (auto &lst: _widgets)
-        lst.resize(_column);
+    for (std::size_t i = 0; i < _row; ++i) {
+        _widgets[i].resize(_column);
+        for (std::size_t j = 0; j < _column; ++j) {
+            _widgets[i][j].position = {
+                .x = _size.x + j,
+                .y = _size.y + i
+            };
+        }
+    }
 }
 
 std::vector<Tile> &TileGrid::operator[](const std::size_t &row)
 {
     return _widgets[row];
+}
+
+std::size_t TileGrid::getRow() const noexcept
+{
+    return _row;
+}
+
+std::size_t TileGrid::getColumn() const noexcept
+{
+    return _column;
+}
+
+CellUnit operator+(const CellUnit &lhs, const int &rhs)
+{
+    CellUnit lhs1(lhs);
+    lhs1.setValue(lhs1.getValue() + rhs);
+
+    return lhs1;
 }
 } // namespace widget
 } // namespace arcade
