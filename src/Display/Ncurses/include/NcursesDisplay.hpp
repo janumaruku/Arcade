@@ -8,6 +8,7 @@
 #ifndef MYFTP_NCURSESDISPLAY_HPP
 #define MYFTP_NCURSESDISPLAY_HPP
 
+#include <chrono>
 #include <iostream>
 #include <ncurses.h>
 
@@ -52,11 +53,37 @@ private:
     double _frameRate = 0;
     int _row = 0;
     int _col = 0;
+    std::unique_ptr<SCREEN, decltype(&delscreen)> _screen{nullptr, delscreen};
     std::unique_ptr<WINDOW, decltype(&delwin)> _window{nullptr, delwin};
+    const std::unordered_map<widget::Color, int> _colorMap = {
+        {widget::Color::TRANSPARENT, -1},
+        {widget::Color::BLACK, COLOR_BLACK},
+        {widget::Color::RED, COLOR_RED},
+        {widget::Color::GREEN, COLOR_GREEN},
+        {widget::Color::YELLOW, COLOR_YELLOW},
+        {widget::Color::BLUE, COLOR_BLUE},
+        {widget::Color::MAGENTA, COLOR_MAGENTA},
+        {widget::Color::CYAN, COLOR_CYAN},
+        {widget::Color::WHITE, COLOR_WHITE},
+    };
+    std::chrono::steady_clock::time_point _startTime;
+    std::unique_ptr<SCREEN, decltype(&delscreen)> _screen2{nullptr, delscreen};
 
     static void initNcurses();
 
-    void openWindowImpl(const CellUnitView &x, const CellUnitView &y);
+    void dispWindowBox() const;
+
+    void openWindowImpl(const CellUnitView &xAxis, const CellUnitView &yAxis);
+
+    void drawText(const widget::AWidget &widget) const;
+
+    void drawTile(const widget::AWidget & widget) const;
+
+    void drawTile(const widget::Tile &tile) const;
+
+    void drawRectangle(const widget::AWidget & widget) const;
+
+    void drawTileGrid(const widget::AWidget & widget) const;
 };
 
 } // display

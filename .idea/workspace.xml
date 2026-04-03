@@ -5,11 +5,12 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="6" type="long" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
   </component>
@@ -18,12 +19,12 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="myftp" targetName="game_interface" />
-      <config projectName="myftp" targetName="dl_loader" />
-      <config projectName="myftp" targetName="widget" />
-      <config projectName="myftp" targetName="arcade" />
-      <config projectName="myftp" targetName="display_interface" />
-      <config projectName="myftp" targetName="arcade_ncurses" />
+      <config projectName="arcade" targetName="game_interface" />
+      <config projectName="arcade" targetName="arcade_ncurses" />
+      <config projectName="arcade" targetName="arcade" />
+      <config projectName="arcade" targetName="dl_loader" />
+      <config projectName="arcade" targetName="display_interface" />
+      <config projectName="arcade" targetName="widget" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -32,9 +33,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="chore(Display): ACP-22 #comment Miscellaneous">
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-23 #comment Add drawRectangle method to NcursesDisplay for rectangle widgets">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/Units.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/Units.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/Widget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/Widget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/include/Units.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/include/Units.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/include/Widget.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/include/Widget.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +52,25 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="173" />
+    <option name="cachedIndexableFilesCount" value="49" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "janumaruku"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:janumaruku/Arcade.git",
+    "accountId": "f94d0993-dc90-4f79-9b11-991c9c71d54a"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="2Vwt6msM" />
   </component>
@@ -65,9 +84,9 @@
     <option name="minorVersion" value="1" />
     <option name="productBranch" value="Classic" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="3BltNr3gS55lokq3FBMUyDi3XCT" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -76,72 +95,68 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.advertisement.text.overridden": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "ACP-22-Handle-window-settings",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C++",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ACP-23-Handle-shapes-drawing&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Display/Ncurses/include" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.arcade">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="arcade" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="myftp" RUN_TARGET_NAME="arcade">
+    <configuration name="arcade_ncurses" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade_ncurses" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="arcade_ncurses" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="arcade_ncurses" CONFIG_NAME="Debug">
+    <configuration name="display_interface" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="display_interface" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="display_interface" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="display_interface" CONFIG_NAME="Debug">
+    <configuration name="dl_loader" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="dl_loader" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="dl_loader" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="dl_loader" CONFIG_NAME="Debug">
+    <configuration name="game_interface" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="game_interface" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="game_interface" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="game_interface" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="widget" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="myftp" TARGET_NAME="widget" CONFIG_NAME="Debug">
+    <configuration name="widget" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="widget" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -162,7 +177,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1775075448239</updated>
-      <workItem from="1775075449701" duration="13841000" />
+      <workItem from="1775075449701" duration="24339000" />
+      <workItem from="1775180366527" duration="1197000" />
+      <workItem from="1775181833892" duration="8464000" />
+      <workItem from="1775208445295" duration="6527000" />
     </task>
     <task id="LOCAL-00001" summary="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation">
       <option name="closed" value="true" />
@@ -236,7 +254,71 @@
       <option name="project" value="LOCAL" />
       <updated>1775113972324</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat(Display): ACP-22 #comment Implement close window for NcursesDisplay.">
+      <option name="closed" value="true" />
+      <created>1775120288805</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1775120288805</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat(Display): ACP-22 #comment Implement getWindowSize window for NcursesDisplay.">
+      <option name="closed" value="true" />
+      <created>1775120357392</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1775120357392</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(Display): ACP-23 #comment Implement draw method for text widget in NcursesDisplay">
+      <option name="closed" value="true" />
+      <created>1775182387566</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1775182387566</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
+      <option name="closed" value="true" />
+      <created>1775203877627</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1775203877627</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
+      <option name="closed" value="true" />
+      <created>1775203882832</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1775203882832</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay">
+      <option name="closed" value="true" />
+      <created>1775208866375</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1775208866376</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat(Display): ACP-23 #comment Implement draw method for tile widgets in NcursesDisplay">
+      <option name="closed" value="true" />
+      <created>1775210331083</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1775210331083</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat(Display): ACP-23 #comment Add drawRectangle method to NcursesDisplay for rectangle widgets">
+      <option name="closed" value="true" />
+      <created>1775221497913</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1775221497913</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +340,18 @@
     <MESSAGE value="fix(Display): ACP-22 #comment use initializer list for CellUnitView constructor" />
     <MESSAGE value="feat(Display): ACP-22 #comment add frame rate calculation" />
     <MESSAGE value="chore(Display): ACP-22 #comment Miscellaneous" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(Display): ACP-22 #comment Miscellaneous" />
+    <MESSAGE value="feat(Display): ACP-22 #comment Implement close window for NcursesDisplay." />
+    <MESSAGE value="feat(Display): ACP-22 #comment Implement getWindowSize window for NcursesDisplay." />
+    <MESSAGE value="merge: ACP-22 Handle-window-settings&#10;&#10;ACP-22 handle window settings" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for text widget in NcursesDisplay" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for tile widgets in NcursesDisplay" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Add drawRectangle method to NcursesDisplay for rectangle widgets" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-23 #comment Add drawRectangle method to NcursesDisplay for rectangle widgets" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
