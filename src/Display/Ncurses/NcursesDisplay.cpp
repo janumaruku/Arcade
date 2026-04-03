@@ -55,6 +55,7 @@ void NcursesDisplay::draw(const widget::AWidget &widget)
         return;
 
     drawText(widget);
+    drawTile(widget);
 }
 
 void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
@@ -158,11 +159,28 @@ void NcursesDisplay::drawText(const widget::AWidget &widget) const
         const CellUnitView xAxis = text.position.x;
         const CellUnitView yAxis = text.position.y;
 
-        init_pair(1, _colorMap.at(text.backgroundColor),
-            _colorMap.at(text.textColor));
+        init_pair(1, _colorMap.at(text.textColor),
+            _colorMap.at(text.backgroundColor));
 
         wattron(_window.get(), COLOR_PAIR(1));
         mvwprintw(_window.get(), yAxis, xAxis, "%s", text.text.c_str());
+        wattroff(_window.get(), COLOR_PAIR(1));
+    }
+}
+
+void NcursesDisplay::drawTile(const widget::AWidget &widget) const
+{
+    if (widget.type == widget::WidgetType::TILE) {
+        const auto &tile = dynamic_cast<const widget::Tile &>(widget);
+
+        const CellUnitView xAxis = tile.position.x;
+        const CellUnitView yAxis = tile.position.y;
+
+        init_pair(1, _colorMap.at(tile.color),
+            _colorMap.at(tile.backgroundColor));
+
+        wattron(_window.get(), COLOR_PAIR(1));
+        mvwprintw(_window.get(), yAxis, xAxis, "%s", tile.symbol.c_str());
         wattroff(_window.get(), COLOR_PAIR(1));
     }
 }

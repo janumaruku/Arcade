@@ -77,7 +77,7 @@ private:
 
     void drawText(const widget::AWidget &widget) const;
 
-    // auto widgetCast(const widget::AWidget &widget) const;
+    void drawTile(const widget::AWidget & widget) const;
 };
 
 } // display

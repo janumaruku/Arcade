@@ -33,11 +33,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling">
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Widget/include/Widget.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Widget/include/Widget.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +177,7 @@
       <workItem from="1775075449701" duration="24339000" />
       <workItem from="1775180366527" duration="1197000" />
       <workItem from="1775181833892" duration="8464000" />
-      <workItem from="1775208445295" duration="363000" />
+      <workItem from="1775208445295" duration="1681000" />
     </task>
     <task id="LOCAL-00001" summary="feat(Display): ACP-21 #comment add Ncurses display module with library setup and implementation">
       <option name="closed" value="true" />
@@ -290,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775203882832</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay">
+      <option name="closed" value="true" />
+      <created>1775208866375</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1775208866376</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +326,8 @@
     <MESSAGE value="merge: ACP-22 Handle-window-settings&#10;&#10;ACP-22 handle window settings" />
     <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for text widget in NcursesDisplay" />
     <MESSAGE value="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-23 #comment Implement clear method for NcursesDisplay and dispWindowBox for better decoupling" />
+    <MESSAGE value="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Display): ACP-23 #comment Implement draw method for text widgets in NcursesDisplay" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

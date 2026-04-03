@@ -39,6 +39,8 @@ enum class WidgetType : uint8_t {
     UNKNOWN = 0,
     TEXT,
     TILE,
+    RECTANGLE,
+    TILE_GRID,
 };
 
 struct AWidget {
