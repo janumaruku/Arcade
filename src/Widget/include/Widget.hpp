@@ -176,6 +176,10 @@ enum class MouseButton : uint8_t {
 
 class Event {
 public:
+    Event() = default;
+    // {
+    //
+    // }
     struct KeyEvent {
         KeyCode code = KeyCode::UNKNOWN;
         bool alt     = false;
@@ -204,7 +208,7 @@ public:
     EventType type = EventType::NONE;
 
     union {
-        KeyEvent key;
+        KeyEvent key{};
         MouseButtonEvent mouseButton;
     };
 };
