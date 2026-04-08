@@ -179,8 +179,8 @@
     <list>
       <item itemvalue="CMake Application.arcade" />
       <item itemvalue="CMake Application.arcade_ncurses" />
-      <item itemvalue="CMake Application.display_interface" />
       <item itemvalue="CMake Application.dl_loader" />
+      <item itemvalue="CMake Application.display_interface" />
       <item itemvalue="CMake Application.game_interface" />
       <item itemvalue="CMake Application.widget" />
     </list>
