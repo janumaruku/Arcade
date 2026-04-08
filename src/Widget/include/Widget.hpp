@@ -12,7 +12,6 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 #include "Units.hpp"
 
@@ -35,12 +34,11 @@ struct Vec2 {
     CellUnit y;
 };
 
-enum class WidgetType : uint8_t {
+enum class WidgetType: uint8_t {
     UNKNOWN = 0,
     TEXT,
     TILE,
-    RECTANGLE,
-    TILE_GRID,
+    RECTANGLE
 };
 
 struct AWidget {
@@ -53,20 +51,39 @@ struct AWidget {
 };
 
 struct Text: AWidget {
+    Text()
+    {
+        type = WidgetType::TEXT;
+    }
+
     std::string text;
     FontSizeUnit fontSize = FontSizeUnit{12};
     Color textColor       = Color::WHITE;
-    Color backgroundColor = Color::BLACK;
+    Color backgroundColor = Color::TRANSPARENT;
+};
+
+struct Rect {
+    int x;
+    int y;
+
+    std::size_t width;
+    std::size_t height;
 };
 
 struct Tile: AWidget {
+    Tile()
+    {
+        type = WidgetType::TILE;
+    }
+
     std::string symbol = " ";
     std::string textureName;
+    Rect rect;
     Color color           = Color::WHITE;
     Color backgroundColor = Color::TRANSPARENT;
 };
 
-enum class BorderStyle : uint8_t {
+enum class BorderStyle: uint8_t {
     NONE = 0,
     SOLID,
 };
@@ -79,7 +96,9 @@ struct BorderDecoration {
 
 struct Rectangle: AWidget {
     explicit Rectangle(const Vec2 &size): _size{size}
-    {}
+    {
+        type = WidgetType::RECTANGLE;
+    }
 
     [[nodiscard]] Vec2 getSize() const noexcept;
 
@@ -93,22 +112,7 @@ protected:
     Vec2 _size = {.x = CellUnit{0}, .y = CellUnit{0}};
 };
 
-struct TileGrid: Rectangle {
-    explicit TileGrid(const std::size_t &row, const std::size_t &column);
-
-    std::vector<Tile> &operator[](const std::size_t &row);
-
-    std::size_t getRow() const noexcept;
-
-    std::size_t getColumn() const noexcept;
-
-private:
-    std::vector<std::vector<Tile>> _widgets;
-    std::size_t _row    = 0;
-    std::size_t _column = 0;
-};
-
-enum class KeyCode : int8_t {
+enum class KeyCode: int8_t {
     UNKNOWN = -1,
     KEY_A,
     KEY_B,
@@ -168,7 +172,7 @@ enum class KeyCode : int8_t {
     COUNT
 };
 
-enum class MouseButton : uint8_t {
+enum class MouseButton: uint8_t {
     NONE = 0,
     LEFT,
     RIGHT,
@@ -177,9 +181,7 @@ enum class MouseButton : uint8_t {
 class Event {
 public:
     Event() = default;
-    // {
-    //
-    // }
+
     struct KeyEvent {
         KeyCode code = KeyCode::UNKNOWN;
         bool alt     = false;
@@ -194,7 +196,7 @@ public:
         int y              = 0;
     };
 
-    enum class EventType : uint8_t {
+    enum class EventType: uint8_t {
         NONE = 0,
         CLOSED,
         KEY_PRESSED,
@@ -224,7 +226,12 @@ struct Resource {
 };
 
 CellUnit operator+(const CellUnit &lhs, const int &rhs);
-} // namespace widget
-} // namespace arcade
+CellUnit operator+(const CellUnit &lhs, const CellUnit &rhs);
+CellUnit operator-(const CellUnit &lhs, const int &rhs);
+CellUnit operator-(const CellUnit &lhs, const CellUnit &rhs);
+CellUnit operator/(const CellUnit &lhs, const int &rhs);
+}
+}
 
 #endif /* !WIDGET_HPP_ */
+
