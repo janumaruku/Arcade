@@ -55,6 +55,11 @@ private:
     int _col          = 0;
     std::unique_ptr<SCREEN, decltype(&delscreen)> _screen{nullptr, delscreen};
     std::unique_ptr<WINDOW, decltype(&delwin)> _window{nullptr, delwin};
+    using Foreground = widget::Color;
+    using Background = widget::Color;
+    using ColorPair  = std::pair<Foreground, Background>;
+    short _pairId = 1;
+    std::unordered_map<short, ColorPair> _pairMap;
     const std::unordered_map<widget::Color, int> _colorMap = {
         {widget::Color::TRANSPARENT, -1},
         {widget::Color::BLACK, COLOR_BLACK},
@@ -152,13 +157,16 @@ private:
         {10, widget::KeyCode::ENTER}
     };
 
+    short getColorPair(const Foreground &foreground,
+        const Background &background);
+
     static void initNcurses();
 
     void dispWindowBox() const;
 
     void openWindowImpl(const CellUnitView &xAxis, const CellUnitView &yAxis);
 
-    void drawText(const widget::AWidget &widget) const;
+    void drawText(const widget::AWidget &widget);
 
     void drawTile(const widget::AWidget &widget) const;
 
@@ -166,7 +174,7 @@ private:
 
     void drawRectangle(const widget::AWidget &widget) const;
 
-    void drawTileGrid(const widget::AWidget &widget) const;
+    // void drawTileGrid(const widget::AWidget &widget) const;
 
     static bool handleKeyMouse(int character, widget::Event &event);
 
