@@ -2,6 +2,7 @@
 <project version="4">
   <component name="BackendCodeEditorSettings">
     <option name="/Default/CodeInspection/CppInitialization/UseUniformInitializationInMemberInitializers/@EntryValue" value="true" type="bool" />
+    <option name="/Default/CodeStyle/CodeFormatting/CppClangFormat/EnableClangFormatSupport/@EntryValue" value="true" type="bool" />
     <option name="/Default/CodeStyle/CodeFormatting/CppCodeStyle/BracesRedundant/@EntryValue" value="true" type="bool" />
     <option name="/Default/CodeStyle/CodeFormatting/CppCodeStyle/NestedNamespacesStyle/@EntryValue" value="NestedNamespaces" type="string" />
     <option name="/Default/CodeStyle/CodeFormatting/CppCodeStyle/SortDefinitions/@EntryValue" value="true" type="bool" />

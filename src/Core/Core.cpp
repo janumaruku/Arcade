@@ -14,6 +14,25 @@ Core::Core(const std::string &libraryPath)
     loadLibrary(libraryPath);
     _currentDisplay = _displayLibraries.begin()->second.get();
     loadLibraries();
+
+    widget::Event event;
+    _currentDisplay->openWindow();
+    _gameListScene = std::make_unique<GameListScene>(*this);
+    while (_currentDisplay->isOpen()) {
+        while (_currentDisplay->pollEvent(event)) {
+            _gameListScene->handleEvent(event);
+        }
+
+        _currentDisplay->clear(widget::Color::TRANSPARENT);
+        _gameListScene->update();
+        _gameListScene->draw();
+        _currentDisplay->display();
+    }
+}
+
+const Core::GameLibrariesMap &Core::getGameLibraries() const noexcept
+{
+    return _gameLibraries;
 }
 
 void Core::loadLibrary(const std::string &libraryPath)
@@ -55,6 +74,11 @@ void Core::loadLibraries()
             std::cout << "Error: " << e.what() << std::endl;
         }
     }
+}
+
+display::IDisplayModule *Core::getCurrentDisplay() const noexcept
+{
+    return _currentDisplay;
 }
 } // core
 } // arcade
