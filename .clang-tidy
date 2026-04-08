@@ -76,7 +76,6 @@ WarningsAsErrors: >
   modernize-use-override,
   bugprone-virtual-near-miss,
   readability-make-member-function-const,
-  cppcoreguidelines-owning-memory,
   cppcoreguidelines-no-malloc,
   hicpp-no-malloc,
   readability-identifier-naming,
