@@ -50,7 +50,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-24 #comment Add input handling for NcursesDisplay, including mouse and keyboard events" />
+    <list default="true" id="b32e3870-2c06-46d1-8179-4dc4d34eadd3" name="Changes" comment="feat(Display): ACP-24 #comment Add input handling for NcursesDisplay, including mouse and keyboard events">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,11 +146,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.arcade">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -180,8 +179,8 @@
     <list>
       <item itemvalue="CMake Application.arcade" />
       <item itemvalue="CMake Application.arcade_ncurses" />
-      <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.display_interface" />
+      <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.game_interface" />
       <item itemvalue="CMake Application.widget" />
     </list>
