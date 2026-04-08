@@ -69,7 +69,7 @@ class Core {
 
         void handleKeyEvent(const widget::Event &event);
 
-        void handleMouseEvent(widget::Event event);
+        void handleMouseEvent(const widget::Event &event);
     };
 
 public:

@@ -51,15 +51,15 @@ void Core::GameListScene::draw()
         _core.getCurrentDisplay()->draw(name);
     }
     // if (!_errorMessage.text.empty())
-        _core.getCurrentDisplay()->draw(_errorMessage);
+    _core.getCurrentDisplay()->draw(_errorMessage);
 }
 
 void Core::GameListScene::buildTab()
 {
     _tab.type = widget::WidgetType::RECTANGLE;
     _tab.setSize(widget::Vec2{.x = 70, .y = 15});
-    const auto [winWidth, winHeight] = _core.getCurrentDisplay()->
-                                             getWindowSize();
+    const auto [winWidth, winHeight] =
+        _core.getCurrentDisplay()->getWindowSize();
     _tab.position.x = (winWidth / 2) - (_tab.getSize().x / 2);
     _tab.position.y = (winHeight / 2) - (_tab.getSize().y / 2) - 5;
 }
@@ -68,27 +68,21 @@ void Core::GameListScene::buildTitle()
 {
     _gamesTitle.type     = widget::WidgetType::TEXT;
     _gamesTitle.text     = "Game libraries";
-    _gamesTitle.position = widget::Vec2{
-        .x = _tab.position.x + (_tab.getSize().x / 2) - (_gamesTitle.text.
-            size() / 2),
-        .y = _tab.position.y
-    };
+    _gamesTitle.position = widget::Vec2{.x = _tab.position.x +
+            (_tab.getSize().x / 2) - (_gamesTitle.text.size() / 2),
+        .y = _tab.position.y};
 }
 
 void Core::GameListScene::buildCursors()
 {
-    _cursorLeft.type     = widget::WidgetType::TEXT;
-    _cursorLeft.text     = "->";
-    _cursorLeft.position = widget::Vec2{
-        .x = _tab.position.x + 2,
-        .y = _tab.position.y + 2
-    };
+    _cursorLeft.type = widget::WidgetType::TEXT;
+    _cursorLeft.text = "->";
+    _cursorLeft.position =
+        widget::Vec2{.x = _tab.position.x + 2, .y = _tab.position.y + 2};
     _cursorRight.type     = widget::WidgetType::TEXT;
     _cursorRight.text     = "<-";
     _cursorRight.position = widget::Vec2{
-        .x = _tab.position.x + _tab.getSize().x - 4,
-        .y = _tab.position.y + 2
-    };
+        .x = _tab.position.x + _tab.getSize().x - 4, .y = _tab.position.y + 2};
 }
 
 void Core::GameListScene::buildList()
@@ -96,31 +90,26 @@ void Core::GameListScene::buildList()
     // const auto &gameLibraries = _core.getGameLibraries();
     auto yAxis = _tab.position.y + 2;
 
-    auto temp = {std::string{"Game 1"},
-                 std::string{"Game 2"},
-                 std::string{"Game 3"},
-                 std::string{"Game 4"}};
+    auto temp = {std::string{"Game 1"}, std::string{"Game 2"},
+        std::string{"Game 3"}, std::string{"Game 4"}};
 
-    for (const auto &name: temp/*gameLibraries | std::views::keys*/) {
+    for (const auto &name: temp /*gameLibraries | std::views::keys*/) {
         _gameLibraries.emplace_back();
         _gameLibraries.back().type     = widget::WidgetType::TEXT;
         _gameLibraries.back().text     = name;
         _gameLibraries.back().position = widget::Vec2{
             .x = (_tab.position.x) + (_tab.getSize().x / 2) - (name.size() / 2),
-            .y = yAxis
-        };
+            .y = yAxis};
         yAxis = yAxis + 2;
     }
 }
 
 void Core::GameListScene::buildErrorMessage()
 {
-    _errorMessage.type = widget::WidgetType::TEXT;
+    _errorMessage.type      = widget::WidgetType::TEXT;
     _errorMessage.textColor = widget::Color::RED;
-    _errorMessage.position = widget::Vec2{
-        .x = _tab.position.x,
-        .y = _tab.position.y + _tab.getSize().y + 5
-    };
+    _errorMessage.position  = widget::Vec2{
+         .x = _tab.position.x, .y = _tab.position.y + _tab.getSize().y + 5};
     if (_gameLibraries.empty())
         _errorMessage.text = "Error: No game library available";
 }
@@ -179,20 +168,26 @@ void Core::GameListScene::handleKeyEvent(const widget::Event &event)
     }
 }
 
-void Core::GameListScene::handleMouseEvent(widget::Event event)
+void Core::GameListScene::handleMouseEvent(const widget::Event &event)
 {
-    // _errorMessage.text += " hi";
-    for (auto elem = _gameLibraries.begin(); elem != _gameLibraries.end(); ++elem) {
-        if (event.mouseButton.button == widget::MouseButton::LEFT &&
-            event.mouseButton.x >= elem->position.x.getValue() &&
-            event.mouseButton.y >= elem->position.y.getValue()) {
-            // _errorMessage.
-            _selectedGame = elem;
+    if (event.mouseButton.button != widget::MouseButton::LEFT)
+        return;
+
+    for (auto elem = _gameLibraries.begin(); elem != _gameLibraries.end();
+        ++elem) {
+        const std::size_t eventX = event.mouseButton.x;
+        const std::size_t eventY = event.mouseButton.y;
+        const std::size_t minX   = _cursorLeft.position.x.getValue();
+        const std::size_t maxX =
+            _cursorRight.position.x.getValue() + _cursorLeft.text.size();
+        const std::size_t yAxis = elem->position.y.getValue();
+        if (eventX >= minX && eventX < maxX && eventY == yAxis) {
+            _selectedGame           = elem;
             _cursorLeft.position.y  = _selectedGame->position.y;
             _cursorRight.position.y = _selectedGame->position.y;
             return;
         }
     }
 }
-}
-}
+} // namespace core
+} // namespace arcade
