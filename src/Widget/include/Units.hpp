@@ -29,6 +29,8 @@ public:
 
     [[nodiscard]] int getValue() const noexcept;
 
+    void setValue(const int &value) noexcept;
+
 protected:
     int _value{0};
 };
@@ -49,7 +51,7 @@ public:
 
 class WeightUnit: public AUnit {
 public:
-    explicit WeightUnit(const int &value);
+    WeightUnit(const int &value);
 
     ~WeightUnit() override = default;
 };
