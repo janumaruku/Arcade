@@ -2,23 +2,22 @@
 ** EPITECH PROJECT, 2026
 ** arcade
 ** File description:
-** GameListScene
+** DisplayListScene
 */
-
-#include <ranges>
 
 #include "Core.hpp"
 
 namespace arcade {
 namespace core {
-Core::GameListScene::GameListScene(Core &core, AScene *next, AScene *prev):
+Core::DisplayListScene::DisplayListScene(
+    Core &core, AScene *next, AScene *prev):
     AScene{core, next, prev}, _tab{widget::Vec2{.x = 0, .y = 0}}
 {
     buildWidgets();
     _selectedLib = _libraries.begin();
 }
 
-void Core::GameListScene::handleEvent(const widget::Event &event)
+void Core::DisplayListScene::handleEvent(const widget::Event &event)
 {
     switch (event.type) {
     case widget::Event::EventType::CLOSED:
@@ -35,12 +34,12 @@ void Core::GameListScene::handleEvent(const widget::Event &event)
     }
 }
 
-void Core::GameListScene::update()
+void Core::DisplayListScene::update()
 {
     return;
 }
 
-void Core::GameListScene::draw()
+void Core::DisplayListScene::draw()
 {
     core.getCurrentDisplay()->draw(_tab);
     core.getCurrentDisplay()->draw(_cursorLeft);
@@ -54,7 +53,7 @@ void Core::GameListScene::draw()
         core.getCurrentDisplay()->draw(_errorMessage);
 }
 
-void Core::GameListScene::buildTab()
+void Core::DisplayListScene::buildTab()
 {
     _tab.type = widget::WidgetType::RECTANGLE;
     _tab.setSize(widget::Vec2{.x = 70, .y = 15});
@@ -64,16 +63,16 @@ void Core::GameListScene::buildTab()
     _tab.position.y = (winHeight / 2) - (_tab.getSize().y / 2) - 5;
 }
 
-void Core::GameListScene::buildTitle()
+void Core::DisplayListScene::buildTitle()
 {
     _title.type     = widget::WidgetType::TEXT;
-    _title.text     = "Game libraries";
+    _title.text     = "Display libraries";
     _title.position = widget::Vec2{.x = _tab.position.x +
             (_tab.getSize().x / 2) - (_title.text.size() / 2),
         .y = _tab.position.y};
 }
 
-void Core::GameListScene::buildCursors()
+void Core::DisplayListScene::buildCursors()
 {
     _cursorLeft.type = widget::WidgetType::TEXT;
     _cursorLeft.text = "->";
@@ -85,7 +84,7 @@ void Core::GameListScene::buildCursors()
         .x = _tab.position.x + _tab.getSize().x - 4, .y = _tab.position.y + 2};
 }
 
-void Core::GameListScene::buildList()
+void Core::DisplayListScene::buildList()
 {
     // const auto &gameLibraries = _core.getGameLibraries();
     auto yAxis = _tab.position.y + 2;
@@ -104,7 +103,7 @@ void Core::GameListScene::buildList()
     }
 }
 
-void Core::GameListScene::buildErrorMessage()
+void Core::DisplayListScene::buildErrorMessage()
 {
     _errorMessage.type      = widget::WidgetType::TEXT;
     _errorMessage.textColor = widget::Color::RED;
@@ -114,7 +113,7 @@ void Core::GameListScene::buildErrorMessage()
         _errorMessage.text = "Error: No library available";
 }
 
-void Core::GameListScene::buildWidgets()
+void Core::DisplayListScene::buildWidgets()
 {
     buildTab();
     buildTitle();
@@ -123,7 +122,7 @@ void Core::GameListScene::buildWidgets()
     buildErrorMessage();
 }
 
-void Core::GameListScene::moveCursorDown()
+void Core::DisplayListScene::moveCursorDown()
 {
     if (_libraries.empty())
         return;
@@ -137,7 +136,7 @@ void Core::GameListScene::moveCursorDown()
     _cursorRight.position.y = _selectedLib->position.y;
 }
 
-void Core::GameListScene::moveCursorUp()
+void Core::DisplayListScene::moveCursorUp()
 {
     if (_libraries.empty())
         return;
@@ -150,13 +149,18 @@ void Core::GameListScene::moveCursorUp()
     _cursorLeft.position.y  = _selectedLib->position.y;
     _cursorRight.position.y = _selectedLib->position.y;
 }
-void Core::GameListScene::goToNextScene() const
+void Core::DisplayListScene::goToNextScene() const
 {
     if (nextScene != nullptr)
         core._currentScene = nextScene;
 }
+void Core::DisplayListScene::goToPreviousScene() const
+{
+    if (prevScene != nullptr)
+        core._currentScene = prevScene;
+}
 
-void Core::GameListScene::handleKeyEvent(const widget::Event &event)
+void Core::DisplayListScene::handleKeyEvent(const widget::Event &event)
 {
     switch (event.key.code) {
     case widget::KeyCode::KEY_Q:
@@ -170,19 +174,22 @@ void Core::GameListScene::handleKeyEvent(const widget::Event &event)
         break;
     case widget::KeyCode::ENTER:
     case widget::KeyCode::KEY_N:
+    case widget::KeyCode::RIGHT:
         goToNextScene();
+    case widget::KeyCode::KEY_P:
+    case widget::KeyCode::LEFT:
+        goToPreviousScene();
     default:
         return;
     }
 }
 
-void Core::GameListScene::handleMouseEvent(const widget::Event &event)
+void Core::DisplayListScene::handleMouseEvent(const widget::Event &event)
 {
     if (event.mouseButton.button != widget::MouseButton::LEFT)
         return;
 
-    for (auto elem = _libraries.begin(); elem != _libraries.end();
-        ++elem) {
+    for (auto elem = _libraries.begin(); elem != _libraries.end(); ++elem) {
         const std::size_t eventX = event.mouseButton.x;
         const std::size_t eventY = event.mouseButton.y;
         const std::size_t minX   = _cursorLeft.position.x.getValue();
@@ -190,7 +197,7 @@ void Core::GameListScene::handleMouseEvent(const widget::Event &event)
             _cursorRight.position.x.getValue() + _cursorLeft.text.size();
         const std::size_t yAxis = elem->position.y.getValue();
         if (eventX >= minX && eventX < maxX && eventY == yAxis) {
-            _selectedLib           = elem;
+            _selectedLib            = elem;
             _cursorLeft.position.y  = _selectedLib->position.y;
             _cursorRight.position.y = _selectedLib->position.y;
             return;

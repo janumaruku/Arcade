@@ -9,8 +9,8 @@
 
 namespace arcade {
 namespace core {
-Core::AScene::AScene(Core &core, AScene *next, AScene *prev): _nextScene{next},
-    _prevScene{prev}, _core{core}
+Core::AScene::AScene(Core &core, AScene *next, AScene *prev): nextScene{next},
+    prevScene{prev}, core{core}
 {}
 } // core
 } // arcade
