@@ -26,7 +26,6 @@ class Core {
 
         virtual void draw() = 0;
 
-    // protected:
         AScene *nextScene = nullptr;
         AScene *prevScene = nullptr;
         Core &core;
@@ -49,6 +48,7 @@ class Core {
         widget::Text _cursorLeft;
         widget::Text _cursorRight;
         std::list<widget::Text> _libraries;
+        widget::Text _descriptionMessage;
         widget::Text _errorMessage;
         std::list<widget::Text>::iterator _selectedLib;
 
@@ -92,6 +92,7 @@ class Core {
         widget::Text _cursorLeft;
         widget::Text _cursorRight;
         std::list<widget::Text> _libraries;
+        widget::Text _descriptionMessage;
         widget::Text _errorMessage;
         std::list<widget::Text>::iterator _selectedLib;
 
@@ -136,7 +137,8 @@ private:
     DisplayLoadersMap _displayLoaders;
     GameLibrariesMap _gameLibraries;
     DisplayLibrariesMap _displayLibraries;
-    display::IDisplayModule *_currentDisplay;
+    display::IDisplayModule *_currentDisplay = nullptr;
+    game::IGameModule *_currentGame          = nullptr;
     std::vector<std::unique_ptr<AScene>> _scenes;
     AScene *_currentScene;
     // std::unique_ptr<GameListScene> _gameListScene;

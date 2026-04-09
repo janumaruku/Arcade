@@ -50,6 +50,7 @@ void Core::GameListScene::draw()
     for (const auto &name: _libraries) {
         core.getCurrentDisplay()->draw(name);
     }
+    core.getCurrentDisplay()->draw(_descriptionMessage);
     if (!_errorMessage.text.empty())
         core.getCurrentDisplay()->draw(_errorMessage);
 }
@@ -87,13 +88,10 @@ void Core::GameListScene::buildCursors()
 
 void Core::GameListScene::buildList()
 {
-    // const auto &gameLibraries = _core.getGameLibraries();
+    const auto &gameLibraries = core.getGameLibraries();
     auto yAxis = _tab.position.y + 2;
 
-    auto temp = {std::string{"Game 1"}, std::string{"Game 2"},
-        std::string{"Game 3"}, std::string{"Game 4"}};
-
-    for (const auto &name: temp /*gameLibraries | std::views::keys*/) {
+    for (const auto &name: gameLibraries | std::views::keys) {
         _libraries.emplace_back();
         _libraries.back().type     = widget::WidgetType::TEXT;
         _libraries.back().text     = name;
@@ -106,10 +104,15 @@ void Core::GameListScene::buildList()
 
 void Core::GameListScene::buildErrorMessage()
 {
+    _descriptionMessage.type      = widget::WidgetType::TEXT;
+    _descriptionMessage.textColor = widget::Color::GREEN;
+    _descriptionMessage.position  = widget::Vec2{
+         .x = _tab.position.x, .y = _tab.position.y + _tab.getSize().y + 5};
     _errorMessage.type      = widget::WidgetType::TEXT;
+    _descriptionMessage.text = "Select a game";
     _errorMessage.textColor = widget::Color::RED;
     _errorMessage.position  = widget::Vec2{
-         .x = _tab.position.x, .y = _tab.position.y + _tab.getSize().y + 5};
+         .x = _tab.position.x, .y = _descriptionMessage.position.y + 2};
     if (_libraries.empty())
         _errorMessage.text = "Error: No library available";
 }
@@ -152,8 +155,15 @@ void Core::GameListScene::moveCursorUp()
 }
 void Core::GameListScene::goToNextScene() const
 {
-    if (nextScene != nullptr)
+    if (nextScene != nullptr && _selectedLib != _libraries.end()) {
+        const auto itt =
+            std::ranges::find_if(core._gameLibraries, [this](const auto &elem) {
+                return _selectedLib->text == elem.first;
+            });
+        if (itt != core._gameLibraries.end())
+            core._currentGame = itt->second.get();
         core._currentScene = nextScene;
+    }
 }
 
 void Core::GameListScene::handleKeyEvent(const widget::Event &event)
@@ -181,8 +191,7 @@ void Core::GameListScene::handleMouseEvent(const widget::Event &event)
     if (event.mouseButton.button != widget::MouseButton::LEFT)
         return;
 
-    for (auto elem = _libraries.begin(); elem != _libraries.end();
-        ++elem) {
+    for (auto elem = _libraries.begin(); elem != _libraries.end(); ++elem) {
         const std::size_t eventX = event.mouseButton.x;
         const std::size_t eventY = event.mouseButton.y;
         const std::size_t minX   = _cursorLeft.position.x.getValue();
@@ -190,7 +199,7 @@ void Core::GameListScene::handleMouseEvent(const widget::Event &event)
             _cursorRight.position.x.getValue() + _cursorLeft.text.size();
         const std::size_t yAxis = elem->position.y.getValue();
         if (eventX >= minX && eventX < maxX && eventY == yAxis) {
-            _selectedLib           = elem;
+            _selectedLib            = elem;
             _cursorLeft.position.y  = _selectedLib->position.y;
             _cursorRight.position.y = _selectedLib->position.y;
             return;

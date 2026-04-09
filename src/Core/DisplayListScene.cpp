@@ -5,6 +5,8 @@
 ** DisplayListScene
 */
 
+#include <ranges>
+
 #include "Core.hpp"
 
 namespace arcade {
@@ -49,6 +51,7 @@ void Core::DisplayListScene::draw()
     for (const auto &name: _libraries) {
         core.getCurrentDisplay()->draw(name);
     }
+    core.getCurrentDisplay()->draw(_descriptionMessage);
     if (!_errorMessage.text.empty())
         core.getCurrentDisplay()->draw(_errorMessage);
 }
@@ -86,13 +89,10 @@ void Core::DisplayListScene::buildCursors()
 
 void Core::DisplayListScene::buildList()
 {
-    // const auto &gameLibraries = _core.getGameLibraries();
+    const auto &gameLibraries = core._displayLibraries;
     auto yAxis = _tab.position.y + 2;
 
-    auto temp = {std::string{"Game 1"}, std::string{"Game 2"},
-        std::string{"Game 3"}, std::string{"Game 4"}};
-
-    for (const auto &name: temp /*gameLibraries | std::views::keys*/) {
+    for (const auto &name: gameLibraries | std::views::keys) {
         _libraries.emplace_back();
         _libraries.back().type     = widget::WidgetType::TEXT;
         _libraries.back().text     = name;
@@ -105,10 +105,15 @@ void Core::DisplayListScene::buildList()
 
 void Core::DisplayListScene::buildErrorMessage()
 {
-    _errorMessage.type      = widget::WidgetType::TEXT;
-    _errorMessage.textColor = widget::Color::RED;
-    _errorMessage.position  = widget::Vec2{
+    _descriptionMessage.type      = widget::WidgetType::TEXT;
+    _descriptionMessage.textColor = widget::Color::GREEN;
+    _descriptionMessage.position  = widget::Vec2{
          .x = _tab.position.x, .y = _tab.position.y + _tab.getSize().y + 5};
+    _errorMessage.type       = widget::WidgetType::TEXT;
+    _descriptionMessage.text = "Select a display library";
+    _errorMessage.textColor  = widget::Color::RED;
+    _errorMessage.position   = widget::Vec2{
+          .x = _tab.position.x, .y = _descriptionMessage.position.y + 2};
     if (_libraries.empty())
         _errorMessage.text = "Error: No library available";
 }
@@ -151,8 +156,9 @@ void Core::DisplayListScene::moveCursorUp()
 }
 void Core::DisplayListScene::goToNextScene() const
 {
-    if (nextScene != nullptr)
+    if (nextScene != nullptr) {
         core._currentScene = nextScene;
+    }
 }
 void Core::DisplayListScene::goToPreviousScene() const
 {
@@ -176,11 +182,13 @@ void Core::DisplayListScene::handleKeyEvent(const widget::Event &event)
     case widget::KeyCode::KEY_N:
     case widget::KeyCode::RIGHT:
         goToNextScene();
+        break;
     case widget::KeyCode::KEY_P:
     case widget::KeyCode::LEFT:
         goToPreviousScene();
+        break;
     default:
-        return;
+        break;
     }
 }
 
