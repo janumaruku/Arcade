@@ -13,13 +13,12 @@
 #include "Widget.hpp"
 #include "Map.hpp"
 
-
 namespace arcade {
 namespace game {
 class PacmanGame : public arcade::game::IGameModule {
 public:
     PacmanGame();
-    ~PacmanGame();
+    ~PacmanGame() = default;
 
     [[nodiscard]] std::string getName() const noexcept;
 
@@ -30,10 +29,13 @@ public:
     void userEvent(const widget::Event &input);
 
     [[nodiscard]] const widget::Resource &getResource() const noexcept;
+
+    std::forward_list<std::unique_ptr<widget::AWidget>> &getGameWidgetList() noexcept;
+
 private:
     widget::Resource _resources;
     widget::GameState _gameState;
-    // Map _map; // champs qui stock la map
+    Map _map;
     int _score;
 };
 }

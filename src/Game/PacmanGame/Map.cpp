@@ -6,57 +6,57 @@
 */
 
 #include <fstream>
+#include <vector>
 #include <string>
+
 #include "Map.hpp"
 
 namespace arcade {
 namespace game {
-Map::Map(const std::string &path)
-{
-    this->loadGameMap(path);
-}
 
-void Map::createTile(const std::string &line)
+void Map::createTile(const std::string &line, PacmanGame &game)
 {
     std::vector<widget::Tile> tmp;
 
     for (const auto &character : line) {
-        widget::Tile tile;
+        unique_ptr<widget::Tile> tile = std::make_unique<widget::Tile>();
         switch (character) {
             case '#':
-                tile.symbol = "╔";
+                tile->symbol = "╔";
                 break;
             case '-':
-                tile.symbol = "═";
+                tile->symbol = "═";
                 break;
             case '@':
-                tile.symbol = "╗";
+                tile->symbol = "╗";
                 break;
             case '.':
-                tile.symbol = "•";
+                tile->symbol = "•";
                 break;
             case 'o':
-                tile.symbol = "●";
+                tile->symbol = "●";
                 break;
             case '$':
-                tile.symbol = "╚";
+                tile->symbol = "╚";
                 break;
             case '&':
-                tile.symbol = "╝";
+                tile->symbol = "╝";
                 break;
         }
-        tmp.push_back(tile);
+        tmp.push_back(tile.get());
+        game.getGameWidgetList().push_back(std::move(tile));
     }
-    _map.push_back(tmp);
+    game.getGameWidgetList().emplace_back(tmp);
+    _mapTile.push_back(tmp);
 }
 
-void Map::loadGameMap(const std::string &path)
+void Map::loadGameMap(const std::string &path, PacmanGame &game)
 {
     std::fstream mapFile(path);
     std::string line;
 
     while (std::getline(mapFile, line)) {
-        createTile(line);
+        createTile(line, game);
     }
 }
 

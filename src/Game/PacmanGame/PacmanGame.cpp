@@ -6,35 +6,44 @@
 */
 
 #include "PacmanGame.hpp"
+#include "Map.hpp"
 
-arcade::game::PacmanGame::PacmanGame()
+namespace arcade {
+namespace game {
+
+PacmanGame::PacmanGame()
 {
+
 }
 
-arcade::game::PacmanGame::~PacmanGame()
-{
-}
-
-[[nodiscard]] std::string arcade::game::PacmanGame::getName() const noexcept
+[[nodiscard]] std::string PacmanGame::getName() const noexcept
 {
     return "Pacman";
 }
 
-void arcade::game::PacmanGame::start() noexcept
+void PacmanGame::start() noexcept
 {
-    // creer la map en appelant les fonction qu'on a créer dans map.hpp
+
 }
 
-[[nodiscard]] const arcade::widget::GameState &arcade::game::PacmanGame::getGameState() noexcept
+std::forward_list<std::unique_ptr<widget::AWidget>> &PacmanGame::getGameWidgetList() noexcept
+{
+    return this->_gameState.widgets;
+}
+
+[[nodiscard]] const arcade::widget::GameState &PacmanGame::getGameState() noexcept
 {
     return this->_gameState;
 }
 
-void arcade::game::PacmanGame::userEvent(const widget::Event &)
+void PacmanGame::userEvent(const widget::Event &)
 {
 }
 
-[[nodiscard]] const arcade::widget::Resource &arcade::game::PacmanGame::getResource() const noexcept
+[[nodiscard]] const arcade::widget::Resource &PacmanGame::getResource() const noexcept
 {
     return this->_resources;
+}
+
+}
 }
