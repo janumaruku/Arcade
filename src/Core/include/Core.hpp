@@ -170,15 +170,14 @@ class Core {
 
         void draw() override;
 
+        bool initialized = false;
+        bool isStarted   = false;
     private:
-        bool _initialized = false;
-        bool _isStarted   = false;
-
         void initialize();
 
         void applyDisplaySwap() const;
 
-        void goBackToMenu() const;
+        void goBackToMenu();
     };
 
 public:
@@ -205,6 +204,7 @@ private:
     std::string _playerName;
 
     void buildScenes();
+    void resetGameSceneState() noexcept;
 
     const GameLibrariesMap &getGameLibraries() const noexcept;
 

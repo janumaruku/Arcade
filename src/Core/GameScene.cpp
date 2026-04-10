@@ -22,7 +22,7 @@ void Core::GameScene::handleEvent(const widget::Event &event)
         return;
     case widget::Event::EventType::KEY_PRESSED:
         if (event.key.code == widget::KeyCode::ESC) {
-            _initialized = false;
+            initialized = false;
             goBackToMenu();
             return;
         }
@@ -42,7 +42,7 @@ void Core::GameScene::handleEvent(const widget::Event &event)
 
 void Core::GameScene::update()
 {
-    if (!_initialized)
+    if (!initialized)
         initialize();
 }
 
@@ -70,12 +70,12 @@ void Core::GameScene::initialize()
     if (core._currentGame != nullptr) {
         core.getCurrentDisplay()->loadResource(
             core._currentGame->getResource());
-        if (!_isStarted) {
+        if (!isStarted) {
             core._currentGame->start();
-            _isStarted = true;
+            isStarted = true;
         }
     }
-    _initialized = true;
+    initialized = true;
 }
 
 void Core::GameScene::applyDisplaySwap() const
@@ -90,10 +90,13 @@ void Core::GameScene::applyDisplaySwap() const
     core._currentDisplay->openWindow();
 }
 
-void Core::GameScene::goBackToMenu() const
+void Core::GameScene::goBackToMenu()
 {
-    if (prevScene != nullptr)
+    if (prevScene != nullptr) {
+        initialized = false;
+        isStarted = false;
         core._currentScene = prevScene;
+    }
 }
 
 } // namespace core

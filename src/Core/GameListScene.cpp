@@ -11,7 +11,6 @@
 
 namespace arcade {
 namespace core {
-
 Core::GameListScene::GameListScene(Core &core, AScene *next, AScene *prev):
     ListMenuScene{core, next, prev}
 {
@@ -46,9 +45,10 @@ void Core::GameListScene::onSelect() const
         std::ranges::find_if(core._gameLibraries, [this](const auto &elem) {
             return _selectedLib->text == elem.first;
         });
-    if (itt != core._gameLibraries.end())
+    if (itt != core._gameLibraries.end()) {
         core._currentGame = itt->second.get();
+        core.resetGameSceneState();
+    }
 }
-
-} // namespace core
-} // namespace arcade
+}
+}

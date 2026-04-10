@@ -154,7 +154,7 @@ void Core::ListMenuScene::moveCursorUp()
 
 void Core::ListMenuScene::goToNextScene() const
 {
-    if (nextScene != nullptr) {
+    if (nextScene != nullptr && !_libraries.empty()) {
         onSelect();
         core._currentScene = nextScene;
     }

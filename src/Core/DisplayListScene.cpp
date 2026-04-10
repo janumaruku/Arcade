@@ -47,8 +47,10 @@ void Core::DisplayListScene::onSelect() const
         std::ranges::find_if(core._displayLibraries, [this](const auto &elem) {
             return _selectedLib->text == elem.first;
         });
-    if (itt != core._displayLibraries.end())
+    if (itt != core._displayLibraries.end()) {
         core._selectedDisplay = itt->second.get();
+        core.resetGameSceneState();
+    }
 }
 
 } // namespace core

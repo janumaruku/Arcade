@@ -50,6 +50,18 @@ void Core::buildScenes()
     _scenes.emplace_back(std::move(disp));
     _scenes.emplace_back(std::move(gameScene));
 }
+
+void Core::resetGameSceneState() noexcept
+{
+    for (auto &scene: _scenes) {
+        if (auto *gameScene = dynamic_cast<GameScene *>(scene.get())) {
+            gameScene->initialized = false;
+            gameScene->isStarted = false;
+            return;
+        }
+    }
+}
+
 const Core::GameLibrariesMap &Core::getGameLibraries() const noexcept
 {
     return _gameLibraries;
