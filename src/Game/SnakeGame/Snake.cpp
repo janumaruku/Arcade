@@ -9,33 +9,19 @@
 
 namespace arcade {
 namespace game {
-Snake::Snake()
+
+std::string SnakeGame::getName() const noexcept
 {
+    return "Snake";
 }
 
-Snake::~Snake()
-{
-}
-
-void Snake::gameLogic()
-{
-    int width = 100;
-    int length = 100;
-
-
-}
-
-void Snake::move(std::vector<std::pair<int, int>> body)
-{
-}
-
-void Snake::getApplePosition(int AppleX, int AppleY)
-{
-}
-
-int main()
-{
-
-}
 } // game
 } // arcade
+
+extern "C"
+{
+    arcade::game::SnakeGame *entryPointGame()
+    {
+        return new arcade::game::SnakeGame();
+    }
+}

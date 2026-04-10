@@ -7,55 +7,64 @@
 
 #ifndef SNAKE_HPP_
 #define SNAKE_HPP_
-#include <chrono>
-#include <deque>
 #include <iostream>
-#include <vector>
-
+#include <chrono>
 #include "GameInterface.hpp"
+#include "Widget.hpp"
+
+#define GRID_SIZE_X 45
+#define GRID_SIZE_Y 30
 
 namespace arcade {
 namespace game {
-class Food {
+namespace snake {
+typedef enum {
+    UP,
+    LEFT,
+    RIGHT,
+    DOWN
+} Direction;
+
+typedef struct {
+    widget::Vec2 head_pos;
+    std::vector<widget::Vec2> pos;
+    snake::Direction dir;
+    long long score;
+    bool addTail;
+} Player;
+} // snake
+
+static const std::unordered_map<snake::Direction, std::string> SnakeUTF8 = {
+    {snake::RIGHT, "▶"},
+    {snake::LEFT,  "◀"},
+    {snake::UP,    "▲"},
+    {snake::DOWN,  "▼"},
+};
+
+class SnakeGame : public IGameModule {
 public:
-    Food() = default;
+    SnakeGame();
+    ~SnakeGame() override = default;
 
-    explicit Food(std::deque<widget::Vec2> snake);
+    [[nodiscard]] std::string getName() const noexcept override;
+    void start() noexcept override;
+    [[nodiscard]] const widget::GameState &getGameState() noexcept override;
+    void userEvent(const widget::Event &input) override;
+    [[nodiscard]] const widget::Resource &getResource() const noexcept override;
 
-    void generateFood(std::deque<widget::Vec2> snake);
-
-    // void drawFood(IDisplayModule *display);
-
-    int getX() const
-    {
-        return _x;
-    }
-
-    int getY() const
-    {
-        return _y;
-    }
-
-    // Params::Vect _pos;
-
+protected:
 private:
-    int _x;
-    int _y;
+    snake::Player _snakebody;
+    snake::Direction _direction;
+    std::vector<std::size_t> _map;
+    void updateDirection();
+    void updateGrid();
+    void addFood();
+    widget::GameState _gamest;
+    bool _gameover;
 };
+} // game
+} // arcade
 
-class Snake: public IGameModule {
-public:
-    Snake();
-    // void drawSnake(IDisplayModule* display);
-    void update();
-    void reset();
-
-    std::deque<widget::Vec2> _body;
-    widget::Vec2 _direction;
-    bool _add_segment;
-    int _score;
-};
-} // namespace game
-} // namespace arcade
 
 #endif /* !SNAKE_HPP_ */
