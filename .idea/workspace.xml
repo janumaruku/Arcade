@@ -33,12 +33,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
+    <list default="true" id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="feat(display): ACP-12 #comment Implement SDL display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/GameScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Display/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/SDL/SdlDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/SDL/SdlDisplay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/SDL/include/SdlDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/SDL/include/SdlDisplay.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="59" />
+    <option name="cachedIndexableFilesCount" value="207" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
@@ -118,7 +116,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "ACP-12-Implement-main-menu-view",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -190,7 +188,7 @@
       <option name="presentableId" value="Default" />
       <updated>1775828489446</updated>
       <workItem from="1775828490705" duration="80000" />
-      <workItem from="1775828590000" duration="11369000" />
+      <workItem from="1775828590000" duration="13015000" />
     </task>
     <task id="LOCAL-00001" summary="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
       <option name="closed" value="true" />
@@ -200,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775832798956</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat(display): ACP-12 #comment Implement SDL display">
+      <option name="closed" value="true" />
+      <created>1775840866562</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775840866562</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +220,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
+    <MESSAGE value="feat(display): ACP-12 #comment Implement SDL display" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(display): ACP-12 #comment Implement SDL display" />
   </component>
 </project>

@@ -55,9 +55,8 @@ void SDLDisplay::openWindow(const widget::Vec2 &size) noexcept
 
     initSDL();
     const int width  = size.x.getValue() * CELL_SIZE;
-    const int height = size.y.getValue() * CELL_SIZE;
-    openWindowImpl(width > 0 ? width : DEFAULT_WIDTH,
-        height > 0 ? height : DEFAULT_HEIGHT);
+    const int height = size.y.getValue() * CELL_HEIGHT;
+    openWindowImpl(width, height);
     _isOpen = true;
 }
 
@@ -107,15 +106,10 @@ void SDLDisplay::display() noexcept
     _startTime = std::chrono::steady_clock::now();
 }
 
-void SDLDisplay::playSound(const std::string &soundName) noexcept
+void SDLDisplay::playSound(const std::string &/*soundName*/) noexcept
 {
     if (!_isOpen)
         return;
-
-    const auto itt = _sounds.find(soundName);
-    if (itt != _sounds.end()) {
-        Mix_PlayChannel(-1, itt->second.get(), 0);
-    }
 }
 
 void SDLDisplay::loadResource(const widget::Resource &resources)
@@ -131,20 +125,11 @@ void SDLDisplay::loadResource(const widget::Resource &resources)
                     texture, SDL_DestroyTexture));
         }
     }
-
-    for (const auto &[name, path]: resources.sounds) {
-        Mix_Chunk *chunk = Mix_LoadWAV(path.c_str());
-        if (chunk != nullptr) {
-            _sounds.emplace(name,
-                std::unique_ptr<Mix_Chunk, decltype(&Mix_FreeChunk)>(
-                    chunk, Mix_FreeChunk));
-        }
-    }
 }
 
 widget::Vec2 SDLDisplay::getWindowSize() const noexcept
 {
-    return {.x = _windowWidth / CELL_SIZE, .y = _windowHeight / CELL_SIZE};
+    return {.x = _windowWidth / CELL_SIZE, .y = _windowHeight / CELL_HEIGHT};
 }
 
 bool SDLDisplay::pollEvent(widget::Event &event)
@@ -194,14 +179,6 @@ void SDLDisplay::initSDL()
         SDL_Quit();
         throw std::runtime_error(
             std::string("TTF_Init failed: ") + TTF_GetError());
-    }
-
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        TTF_Quit();
-        IMG_Quit();
-        SDL_Quit();
-        throw std::runtime_error(
-            std::string("Mix_OpenAudio failed: ") + Mix_GetError());
     }
 }
 
@@ -279,7 +256,7 @@ void SDLDisplay::drawText(const widget::AWidget &widget)
         return;
 
     const int xPos = text.position.x.getValue() * CELL_SIZE;
-    const int yPos = text.position.y.getValue() * CELL_SIZE;
+    const int yPos = text.position.y.getValue() * CELL_HEIGHT;
 
     int textWidth  = 0;
     int textHeight = 0;
@@ -298,32 +275,29 @@ void SDLDisplay::drawTile(const widget::AWidget &widget)
     const auto &tile = dynamic_cast<const widget::Tile &>(widget);
 
     const int xPos = tile.position.x.getValue() * CELL_SIZE;
-    const int yPos = tile.position.y.getValue() * CELL_SIZE;
+    const int yPos = tile.position.y.getValue() * CELL_HEIGHT;
 
-    // Try to draw texture if available
     if (!tile.textureName.empty()) {
         const auto itt = _textures.find(tile.textureName);
         if (itt != _textures.end()) {
             const SDL_Rect srcRect  = {tile.rect.x, tile.rect.y,
                  static_cast<int>(tile.rect.width),
                  static_cast<int>(tile.rect.height)};
-            const SDL_Rect destRect = {xPos, yPos, CELL_SIZE, CELL_SIZE};
+            const SDL_Rect destRect = {xPos, yPos, CELL_SIZE, CELL_HEIGHT};
             SDL_RenderCopy(
                 _renderer.get(), itt->second.get(), &srcRect, &destRect);
             return;
         }
     }
 
-    // Draw background color
     if (tile.backgroundColor != widget::Color::TRANSPARENT) {
         const SDL_Color bgColor = getColor(tile.backgroundColor);
         SDL_SetRenderDrawColor(
             _renderer.get(), bgColor.r, bgColor.g, bgColor.b, bgColor.a);
-        const SDL_Rect bgRect = {xPos, yPos, CELL_SIZE, CELL_SIZE};
+        const SDL_Rect bgRect = {xPos, yPos, CELL_SIZE, CELL_HEIGHT};
         SDL_RenderFillRect(_renderer.get(), &bgRect);
     }
 
-    // Draw symbol as text fallback
     if (!tile.symbol.empty()) {
         const SDL_Color color = getColor(tile.color);
         SDL_Surface *surface =
@@ -341,7 +315,7 @@ void SDLDisplay::drawTile(const widget::AWidget &widget)
                     texture, nullptr, nullptr, &textWidth, &textHeight);
 
                 const SDL_Rect destRect = {xPos + (CELL_SIZE - textWidth) / 2,
-                    yPos + (CELL_SIZE - textHeight) / 2, textWidth, textHeight};
+                    yPos + (CELL_HEIGHT - textHeight) / 2, textWidth, textHeight};
                 SDL_RenderCopy(_renderer.get(), texture, nullptr, &destRect);
                 SDL_DestroyTexture(texture);
             }
@@ -357,11 +331,10 @@ void SDLDisplay::drawRectangle(const widget::AWidget &widget)
     const auto &rectangle = dynamic_cast<const widget::Rectangle &>(widget);
 
     const int xPos   = rectangle.position.x.getValue() * CELL_SIZE;
-    const int yPos   = rectangle.position.y.getValue() * CELL_SIZE;
+    const int yPos   = rectangle.position.y.getValue() * CELL_HEIGHT;
     const int width  = rectangle.getSize().x.getValue() * CELL_SIZE;
-    const int height = rectangle.getSize().y.getValue() * CELL_SIZE;
+    const int height = rectangle.getSize().y.getValue() * CELL_HEIGHT;
 
-    // Try to draw texture if available
     if (!rectangle.textureName.empty()) {
         const auto itt = _textures.find(rectangle.textureName);
         if (itt != _textures.end()) {
@@ -372,7 +345,6 @@ void SDLDisplay::drawRectangle(const widget::AWidget &widget)
         }
     }
 
-    // Draw fill color
     if (rectangle.fillColor != widget::Color::TRANSPARENT) {
         const SDL_Color fillColor = getColor(rectangle.fillColor);
         SDL_SetRenderDrawColor(_renderer.get(), fillColor.r, fillColor.g,
@@ -381,7 +353,6 @@ void SDLDisplay::drawRectangle(const widget::AWidget &widget)
         SDL_RenderFillRect(_renderer.get(), &fillRect);
     }
 
-    // Draw border if style is SOLID
     if (rectangle.decoration.style == widget::BorderStyle::SOLID) {
         const SDL_Color borderColor =
             getColor(rectangle.decoration.borderColor);
@@ -428,7 +399,7 @@ bool SDLDisplay::handleMouseEvent(
     }
 
     event.mouseButton.x = sdlEvent.button.x / CELL_SIZE;
-    event.mouseButton.y = sdlEvent.button.y / CELL_SIZE;
+    event.mouseButton.y = sdlEvent.button.y / CELL_HEIGHT;
     return true;
 }
 

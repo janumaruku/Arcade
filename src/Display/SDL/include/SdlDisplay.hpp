@@ -10,12 +10,11 @@
 
 #include <chrono>
 #include <memory>
-#include <string>
-#include <unordered_map>
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <string>
+#include <unordered_map>
 
 #include "DisplayInterface.hpp"
 
@@ -53,18 +52,17 @@ public:
     [[nodiscard]] const std::string &getName() const noexcept override;
 
 private:
-    static constexpr int DEFAULT_WIDTH      = 1280;
-    static constexpr int DEFAULT_HEIGHT     = 720;
-    static constexpr int CELL_SIZE          = 16;
-    static constexpr int DEFAULT_FONT_SIZE  = 16;
-    static constexpr double TARGET_FPS      = 60.0;
+    static constexpr int CELL_SIZE         = 16;
+    static constexpr int CELL_HEIGHT       = 18;
+    static constexpr int DEFAULT_FONT_SIZE = 9;
+    static constexpr double TARGET_FPS     = 60.0;
 
     std::string _libName     = "SDL2";
     std::string _windowTitle = "Arcade - SDL2";
     bool _isOpen{false};
     double _frameRate = 1.0 / TARGET_FPS;
-    int _windowWidth  = DEFAULT_WIDTH;
-    int _windowHeight = DEFAULT_HEIGHT;
+    int _windowWidth;
+    int _windowHeight;
 
     std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> _window{
         nullptr, SDL_DestroyWindow};
@@ -73,10 +71,12 @@ private:
     std::unique_ptr<TTF_Font, decltype(&TTF_CloseFont)> _font{
         nullptr, TTF_CloseFont};
 
-    std::unordered_map<std::string, std::unique_ptr<SDL_Texture,
-        decltype(&SDL_DestroyTexture)>> _textures;
-    std::unordered_map<std::string, std::unique_ptr<Mix_Chunk,
-        decltype(&Mix_FreeChunk)>> _sounds;
+    std::unordered_map<std::string,
+        std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>>
+        _textures;
+    std::unordered_map<std::string,
+        std::unique_ptr<Mix_Chunk, decltype(&Mix_FreeChunk)>>
+        _sounds;
 
     std::chrono::steady_clock::time_point _startTime;
 
