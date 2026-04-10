@@ -1,7 +1,11 @@
 add_executable(arcade main.cpp
         Core.cpp
         AScene.cpp
-        GameListScene.cpp)
+        GameListScene.cpp
+        DisplayListScene.cpp
+        ListMenuScene.cpp
+        NameEntryScene.cpp
+        GameScene.cpp)
 
 target_include_directories(arcade PUBLIC include)
 

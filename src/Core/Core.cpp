@@ -12,37 +12,61 @@ namespace core {
 Core::Core(const std::string &libraryPath)
 {
     loadLibrary(libraryPath);
-    _currentDisplay = _displayLibraries.begin()->second.get();
+    _currentDisplay  = _displayLibraries.begin()->second.get();
+    _selectedDisplay = _displayLibraries.begin()->second.get();
     loadLibraries();
 
-    widget::Event event;
     _currentDisplay->openWindow();
-    _gameListScene = std::make_unique<GameListScene>(*this);
+    buildScenes();
+}
+void Core::run() const
+{
+    widget::Event event;
+
     while (_currentDisplay->isOpen()) {
         while (_currentDisplay->pollEvent(event)) {
-            _gameListScene->handleEvent(event);
+            _currentScene->handleEvent(event);
         }
 
         _currentDisplay->clear(widget::Color::TRANSPARENT);
-        _gameListScene->update();
-        _gameListScene->draw();
+        _currentScene->update();
+        _currentScene->draw();
         _currentDisplay->display();
     }
 }
 
+void Core::buildScenes()
+{
+    auto nameEntry = std::make_unique<NameEntryScene>(*this);
+    auto game = std::make_unique<GameListScene>(*this, nullptr, nameEntry.get());
+    auto disp = std::make_unique<DisplayListScene>(*this, nullptr, game.get());
+    auto gameScene = std::make_unique<GameScene>(*this, nullptr, disp.get());
+    nameEntry->nextScene = game.get();
+    game->nextScene      = disp.get();
+    disp->nextScene      = gameScene.get();
+    _currentScene = nameEntry.get();
+    _scenes.emplace_back(std::move(nameEntry));
+    _scenes.emplace_back(std::move(game));
+    _scenes.emplace_back(std::move(disp));
+    _scenes.emplace_back(std::move(gameScene));
+}
 const Core::GameLibrariesMap &Core::getGameLibraries() const noexcept
 {
     return _gameLibraries;
 }
 
+const Core::DisplayLibrariesMap &Core::getDisplayLibraries() const noexcept
+{
+    return _displayLibraries;
+}
 void Core::loadLibrary(const std::string &libraryPath)
 {
     utils::DLLoader loader;
     loader.loadLibrary(libraryPath);
 
     try {
-        auto lib = loader.getInstance<display::IDisplayModule>(
-            "entryPointDisplay");
+        auto lib =
+            loader.getInstance<display::IDisplayModule>("entryPointDisplay");
 
         if (_displayLibraries.contains(lib->getName()))
             return;
@@ -51,7 +75,7 @@ void Core::loadLibrary(const std::string &libraryPath)
     } catch (const std::exception &) {
         try {
             auto lib = loader.getInstance<game::IGameModule>("entryPointGame");
-            _gameLoaders[lib->getName()] = std::move(loader);
+            _gameLoaders[lib->getName()]   = std::move(loader);
             _gameLibraries[lib->getName()] = std::move(lib);
         } catch (const std::exception &) {
             throw std::runtime_error{
@@ -80,5 +104,5 @@ display::IDisplayModule *Core::getCurrentDisplay() const noexcept
 {
     return _currentDisplay;
 }
-} // core
-} // arcade
+} // namespace core
+} // namespace arcade

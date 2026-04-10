@@ -15,6 +15,7 @@ int main(const int argc, char *argv[])
         return 84;
     try {
         arcade::core::Core core{argv[1]};
+        core.run();
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
