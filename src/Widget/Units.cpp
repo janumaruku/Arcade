@@ -19,6 +19,11 @@ int AUnit::getValue() const noexcept
     return _value;
 }
 
+void AUnit::setValue(const int &value) noexcept
+{
+    _value = value;
+}
+
 CellUnit::CellUnit(const int &value): AUnit{value}
 {}
 
