@@ -12,7 +12,8 @@ namespace core {
 Core::Core(const std::string &libraryPath)
 {
     loadLibrary(libraryPath);
-    _currentDisplay = _displayLibraries.begin()->second.get();
+    _currentDisplay  = _displayLibraries.begin()->second.get();
+    _selectedDisplay = _currentDisplay;
     loadLibraries();
 
     _currentDisplay->openWindow();
@@ -36,18 +37,28 @@ void Core::run() const
 
 void Core::buildScenes()
 {
-    auto game = std::make_unique<GameListScene>(*this);
+    auto nameEntry = std::make_unique<NameEntryScene>(*this);
+    auto game = std::make_unique<GameListScene>(*this, nullptr, nameEntry.get());
     auto disp = std::make_unique<DisplayListScene>(*this, nullptr, game.get());
-    game->nextScene = disp.get();
-    _currentScene = game.get();
+    auto gameScene = std::make_unique<GameScene>(*this, nullptr, disp.get());
+    nameEntry->nextScene = game.get();
+    game->nextScene      = disp.get();
+    disp->nextScene      = gameScene.get();
+    _currentScene = nameEntry.get();
+    _scenes.emplace_back(std::move(nameEntry));
     _scenes.emplace_back(std::move(game));
     _scenes.emplace_back(std::move(disp));
+    _scenes.emplace_back(std::move(gameScene));
 }
 const Core::GameLibrariesMap &Core::getGameLibraries() const noexcept
 {
     return _gameLibraries;
 }
 
+const Core::DisplayLibrariesMap &Core::getDisplayLibraries() const noexcept
+{
+    return _displayLibraries;
+}
 void Core::loadLibrary(const std::string &libraryPath)
 {
     utils::DLLoader loader;
