@@ -63,7 +63,7 @@ void Core::ListMenuScene::draw()
 void Core::ListMenuScene::buildTab()
 {
     _tab.type = widget::WidgetType::RECTANGLE;
-    _tab.setSize(widget::Vec2{.x = 70, .y = 15});
+    _tab.setSize(widget::Vec2{.x = 50, .y = 15});
     const auto [winWidth, winHeight] =
         core.getCurrentDisplay()->getWindowSize();
     _tab.position.x = (winWidth / 2) - (_tab.getSize().x / 2);

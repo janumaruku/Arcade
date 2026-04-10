@@ -16,7 +16,7 @@ Core::Core(const std::string &libraryPath)
     _selectedDisplay = _displayLibraries.begin()->second.get();
     loadLibraries();
 
-    _currentDisplay->openWindow();
+    _currentDisplay->openWindow(widget::Vec2{.x = 100, .y = 40});
     buildScenes();
 }
 void Core::run() const

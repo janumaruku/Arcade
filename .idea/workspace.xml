@@ -5,6 +5,7 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppCodeGeneration" type="string" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -20,6 +21,7 @@
       <config projectName="arcade" targetName="game_interface" />
       <config projectName="arcade" targetName="arcade_ncurses" />
       <config projectName="arcade" targetName="arcade" />
+      <config projectName="arcade" targetName="arcade_sdl" />
       <config projectName="arcade" targetName="dl_loader" />
       <config projectName="arcade" targetName="display_interface" />
       <config projectName="arcade" targetName="widget" />
@@ -31,22 +33,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Arcade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Arcade.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/betterCommentsSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/betterCommentsSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/GameScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameScene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/include/Core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/include/Core.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/NcursesDisplay.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/Ncurses/include/NcursesDisplay.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +50,16 @@
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="GHAISettings"><![CDATA[{
+  "automaticallyGenerateSummary": false
+}]]></component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -73,6 +75,9 @@
     &quot;accountId&quot;: &quot;f94d0993-dc90-4f79-9b11-991c9c71d54a&quot;
   }
 }</component>
+  <component name="LLMProjectSettings">
+    <option name="turned_on" value="false" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="allVLFxw" />
   </component>
@@ -121,7 +126,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "CPPToolchains",
+    "settings.editor.selected.configurable": "ml.llm.LLMProjectConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -138,6 +143,11 @@
       </method>
     </configuration>
     <configuration name="arcade_ncurses" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade_ncurses" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="arcade_sdl" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade_sdl" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -165,6 +175,7 @@
     <list>
       <item itemvalue="CMake Application.arcade" />
       <item itemvalue="CMake Application.arcade_ncurses" />
+      <item itemvalue="CMake Application.arcade_sdl" />
       <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.display_interface" />
       <item itemvalue="CMake Application.game_interface" />
@@ -179,8 +190,17 @@
       <option name="presentableId" value="Default" />
       <updated>1775828489446</updated>
       <workItem from="1775828490705" duration="80000" />
-      <workItem from="1775828590000" duration="3872000" />
+      <workItem from="1775828590000" duration="11369000" />
     </task>
+    <task id="LOCAL-00001" summary="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
+      <option name="closed" value="true" />
+      <created>1775832798955</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1775832798956</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,5 +211,9 @@
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
     <isAutomaticBootstrapAfterUpdate value="false" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
   </component>
 </project>

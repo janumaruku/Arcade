@@ -83,7 +83,7 @@ void Core::GameScene::applyDisplaySwap() const
 
     core._currentDisplay->closeWindow();
     core._currentDisplay = core._selectedDisplay;
-    core._currentDisplay->openWindow();
+    core._currentDisplay->openWindow(widget::Vec2{.x = 100, .y = 40});
 }
 
 void Core::GameScene::goBackToMenu()
