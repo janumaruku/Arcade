@@ -201,7 +201,7 @@ private:
     display::IDisplayModule *_selectedDisplay = nullptr;
     game::IGameModule *_currentGame           = nullptr;
     std::vector<std::unique_ptr<AScene>> _scenes;
-    AScene *_currentScene;
+    AScene *_currentScene{};
     std::string _playerName;
 
     void buildScenes();

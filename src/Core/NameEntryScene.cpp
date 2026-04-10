@@ -138,9 +138,9 @@ void Core::NameEntryScene::handleKeyEvent(const widget::Event &event)
 
 void Core::NameEntryScene::handleCharInput(widget::KeyCode code)
 {
-    static constexpr std::size_t MAX_NAME_LENGTH = 20;
+    static constexpr std::size_t maxNameLength = 20;
 
-    if (_playerName.size() >= MAX_NAME_LENGTH)
+    if (_playerName.size() >= maxNameLength)
         return;
 
     if (code >= widget::KeyCode::KEY_A && code <= widget::KeyCode::KEY_Z) {

@@ -13,7 +13,7 @@ Core::Core(const std::string &libraryPath)
 {
     loadLibrary(libraryPath);
     _currentDisplay  = _displayLibraries.begin()->second.get();
-    _selectedDisplay = _currentDisplay;
+    _selectedDisplay = _displayLibraries.begin()->second.get();
     loadLibraries();
 
     _currentDisplay->openWindow();

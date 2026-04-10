@@ -31,13 +31,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44f09752-931c-4a13-a049-cf1fb4ac11a7" name="Changes" comment="fix(Core): ACP-12 #comment Fix user imput handling for navigation between scenes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/DisplayListScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/DisplayListScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/GameListScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameListScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/include/Core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/include/Core.hpp" afterDir="false" />
+    <list default="true" id="44f09752-931c-4a13-a049-cf1fb4ac11a7" name="Changes" comment="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates">
+      <change beforePath="$PROJECT_DIR$/src/Core/NameEntryScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/NameEntryScene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1775660602648</updated>
       <workItem from="1775660603760" duration="6861000" />
-      <workItem from="1775678546418" duration="11758000" />
+      <workItem from="1775678546418" duration="12394000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(GameListScene): improve code readability and mouse event handling in `GameListScene`">
       <option name="closed" value="true" />
@@ -203,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775725682635</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates">
+      <option name="closed" value="true" />
+      <created>1775780516204</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775780516204</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +222,7 @@
     <MESSAGE value="refactor(GameListScene): improve code readability and mouse event handling in `GameListScene`" />
     <MESSAGE value="feat(Core): ACP-12 #comment Implement `DisplayListScene` for managing display library UI and navigation in Core" />
     <MESSAGE value="fix(Core): ACP-12 #comment Fix user imput handling for navigation between scenes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(Core): ACP-12 #comment Fix user imput handling for navigation between scenes" />
+    <MESSAGE value="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates" />
   </component>
 </project>
