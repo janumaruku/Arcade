@@ -38,25 +38,26 @@ void Core::run() const
 void Core::buildScenes()
 {
     auto nameEntry = std::make_unique<NameEntryScene>(*this);
-    auto game = std::make_unique<GameListScene>(*this, nullptr, nameEntry.get());
+    auto game =
+        std::make_unique<GameListScene>(*this, nullptr, nameEntry.get());
     auto disp = std::make_unique<DisplayListScene>(*this, nullptr, game.get());
     auto gameScene = std::make_unique<GameScene>(*this, nullptr, disp.get());
     nameEntry->nextScene = game.get();
     game->nextScene      = disp.get();
     disp->nextScene      = gameScene.get();
-    _currentScene = nameEntry.get();
+    _currentScene        = nameEntry.get();
     _scenes.emplace_back(std::move(nameEntry));
     _scenes.emplace_back(std::move(game));
     _scenes.emplace_back(std::move(disp));
     _scenes.emplace_back(std::move(gameScene));
 }
 
-void Core::resetGameSceneState() noexcept
+void Core::resetGameSceneState() const noexcept
 {
-    for (auto &scene: _scenes) {
+    for (const auto &scene: _scenes) {
         if (auto *gameScene = dynamic_cast<GameScene *>(scene.get())) {
             gameScene->initialized = false;
-            gameScene->isStarted = false;
+            gameScene->isStarted   = false;
             return;
         }
     }

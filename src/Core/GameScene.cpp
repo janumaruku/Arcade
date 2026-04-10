@@ -57,10 +57,6 @@ void Core::GameScene::draw()
         if (widget != nullptr)
             core.getCurrentDisplay()->draw(*widget);
     }
-
-    // for (const auto &sound: gameState.sounds) {
-    //     core.getCurrentDisplay()->playSound(sound);
-    // }
 }
 
 void Core::GameScene::initialize()

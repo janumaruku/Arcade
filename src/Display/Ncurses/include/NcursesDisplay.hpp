@@ -168,11 +168,11 @@ private:
 
     void drawText(const widget::AWidget &widget);
 
-    void drawTile(const widget::AWidget &widget) const;
+    void drawTile(const widget::AWidget &widget);
 
-    void drawTile(const widget::Tile &tile) const;
+    void drawTile(const widget::Tile &tile);
 
-    void drawRectangle(const widget::AWidget &widget) const;
+    void drawRectangle(const widget::AWidget &widget);
 
     // void drawTileGrid(const widget::AWidget &widget) const;
 

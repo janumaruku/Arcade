@@ -52,6 +52,12 @@ class Core {
         widget::Text _errorMessage;
         std::list<widget::Text>::iterator _selectedLib;
 
+        widget::Text _keyHelpText;
+        widget::Rectangle _prevButton;
+        widget::Text _prevButtonText;
+        widget::Rectangle _nextButton;
+        widget::Text _nextButtonText;
+
         void buildTab();
 
         void buildCursors();
@@ -59,6 +65,10 @@ class Core {
         void buildErrorMessage();
 
         void buildWidgets();
+
+        void buildKeyHelpText();
+
+        void buildNavigationButtons();
 
         void moveCursorDown();
 
@@ -72,11 +82,11 @@ class Core {
 
         void handleMouseEvent(const widget::Event &event);
 
-        virtual std::string getTitleText() const = 0;
+        [[nodiscard]] virtual std::string getTitleText() const = 0;
 
-        virtual std::string getDescriptionText() const = 0;
+        [[nodiscard]] virtual std::string getDescriptionText() const = 0;
 
-        virtual std::vector<std::string> getItemNames() const = 0;
+        [[nodiscard]] virtual std::vector<std::string> getItemNames() const = 0;
 
         virtual void onSelect() const;
 
@@ -92,11 +102,11 @@ class Core {
             Core &core, AScene *next = nullptr, AScene *prev = nullptr);
 
     protected:
-        std::string getTitleText() const override;
+        [[nodiscard]] std::string getTitleText() const override;
 
-        std::string getDescriptionText() const override;
+        [[nodiscard]] std::string getDescriptionText() const override;
 
-        std::vector<std::string> getItemNames() const override;
+        [[nodiscard]] std::vector<std::string> getItemNames() const override;
 
         void onSelect() const override;
     };
@@ -107,11 +117,11 @@ class Core {
             Core &core, AScene *next = nullptr, AScene *prev = nullptr);
 
     protected:
-        std::string getTitleText() const override;
+        [[nodiscard]] std::string getTitleText() const override;
 
-        std::string getDescriptionText() const override;
+        [[nodiscard]] std::string getDescriptionText() const override;
 
-        std::vector<std::string> getItemNames() const override;
+        [[nodiscard]] std::vector<std::string> getItemNames() const override;
 
         void onSelect() const override;
     };
@@ -204,7 +214,7 @@ private:
     std::string _playerName;
 
     void buildScenes();
-    void resetGameSceneState() noexcept;
+    void resetGameSceneState() const noexcept;
 
     const GameLibrariesMap &getGameLibraries() const noexcept;
 

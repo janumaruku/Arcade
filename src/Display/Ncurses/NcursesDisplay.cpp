@@ -61,7 +61,7 @@ void NcursesDisplay::draw(const widget::AWidget &widget)
     // drawTileGrid(widget);
 }
 
-void NcursesDisplay::clear(const widget::Color &/*color*/) noexcept
+void NcursesDisplay::clear(const widget::Color & /*color*/) noexcept
 {
     if (!_isOpen)
         return;
@@ -79,23 +79,24 @@ void NcursesDisplay::display() noexcept
     refresh();
     const std::chrono::steady_clock::time_point timeNow =
         std::chrono::steady_clock::now();
-    const std::chrono::duration<double> elapsedTime = std::chrono::duration_cast
-        <std::chrono::duration<double>>(timeNow - _startTime);
+    const std::chrono::duration<double> elapsedTime =
+        std::chrono::duration_cast<std::chrono::duration<double>>(
+            timeNow - _startTime);
 
     if (elapsedTime.count() < _frameRate)
-        std::this_thread::sleep_for(std::chrono::duration<double>
-            (_frameRate - elapsedTime.count()));
+        std::this_thread::sleep_for(
+            std::chrono::duration<double>(_frameRate - elapsedTime.count()));
 
     _startTime = std::chrono::steady_clock::now();
 }
 
-void NcursesDisplay::playSound(const std::string &/*soundName*/) noexcept
+void NcursesDisplay::playSound(const std::string & /*soundName*/) noexcept
 {
     if (!_isOpen)
         return;
 }
 
-void NcursesDisplay::loadResource(const widget::Resource &/*resources*/)
+void NcursesDisplay::loadResource(const widget::Resource & /*resources*/)
 {
     if (!_isOpen)
         return;
@@ -126,11 +127,11 @@ const std::string &NcursesDisplay::getName() const noexcept
     return _libName;
 }
 
-short NcursesDisplay::getColorPair(const Foreground &foreground,
-    const Background &background)
+short NcursesDisplay::getColorPair(
+    const Foreground &foreground, const Background &background)
 {
-    const auto itt = std::ranges::find_if(_pairMap,
-        [foreground, background](const auto &colorPair) {
+    const auto itt = std::ranges::find_if(
+        _pairMap, [foreground, background](const auto &colorPair) {
             return colorPair.second.first == foreground &&
                 colorPair.second.second == background;
         });
@@ -173,8 +174,8 @@ void NcursesDisplay::dispWindowBox() const
     mvwprintw(_window.get(), 0, 3, "%s - Ncurses", _windowTitle.c_str());
 }
 
-void NcursesDisplay::openWindowImpl(const CellUnitView &xAxis,
-    const CellUnitView &yAxis)
+void NcursesDisplay::openWindowImpl(
+    const CellUnitView &xAxis, const CellUnitView &yAxis)
 {
     _row = yAxis;
     _col = xAxis;
@@ -206,7 +207,7 @@ void NcursesDisplay::drawText(const widget::AWidget &widget)
     }
 }
 
-void NcursesDisplay::drawTile(const widget::AWidget &widget) const
+void NcursesDisplay::drawTile(const widget::AWidget &widget)
 {
     if (widget.type == widget::WidgetType::TILE) {
         const auto &tile = dynamic_cast<const widget::Tile &>(widget);
@@ -214,30 +215,30 @@ void NcursesDisplay::drawTile(const widget::AWidget &widget) const
         const CellUnitView xAxis = tile.position.x;
         const CellUnitView yAxis = tile.position.y;
 
-        init_pair(1, _colorMap.at(tile.color),
-            _colorMap.at(tile.backgroundColor));
+        const short colorId =
+            getColorPair(tile.color, tile.backgroundColor);
 
-        wattron(_window.get(), COLOR_PAIR(1));
+        wattron(_window.get(), COLOR_PAIR(colorId));
         mvwprintw(_window.get(), yAxis + 1, xAxis + 1, "%s",
             tile.symbol.c_str());
-        wattroff(_window.get(), COLOR_PAIR(1));
+        wattroff(_window.get(), COLOR_PAIR(colorId));
     }
 }
 
-void NcursesDisplay::drawTile(const widget::Tile &tile) const
+void NcursesDisplay::drawTile(const widget::Tile &tile)
 {
     const CellUnitView xAxis = tile.position.x;
     const CellUnitView yAxis = tile.position.y;
 
-    init_pair(1, _colorMap.at(tile.color),
-        _colorMap.at(tile.backgroundColor));
+    const short colorId =
+        getColorPair(tile.color, tile.backgroundColor);
 
-    wattron(_window.get(), COLOR_PAIR(1));
+    wattron(_window.get(), COLOR_PAIR(colorId));
     mvwprintw(_window.get(), yAxis + 1, xAxis + 1, "%s", tile.symbol.c_str());
-    wattroff(_window.get(), COLOR_PAIR(1));
+    wattroff(_window.get(), COLOR_PAIR(colorId));
 }
 
-void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
+void NcursesDisplay::drawRectangle(const widget::AWidget &widget)
 {
     if (widget.type == widget::WidgetType::RECTANGLE) {
         const auto &rectangle = dynamic_cast<const widget::Rectangle &>(widget);
@@ -247,31 +248,23 @@ void NcursesDisplay::drawRectangle(const widget::AWidget &widget) const
         const CellUnitView xSize = rectangle.getSize().x;
         const CellUnitView ySize = rectangle.getSize().y;
 
+        const short colorId =
+            getColorPair(rectangle.decoration.borderColor, rectangle.fillColor);
+
         const std::unique_ptr<WINDOW, decltype(&delwin)> rect{
             subwin(_window.get(),
                 ySize, xSize, yAxis + 1, xAxis + 1),
             delwin};
+
+        wattron(_window.get(), COLOR_PAIR(colorId));
         box(rect.get(), 0, 0);
         mvwprintw(_window.get(), yAxis + 1, xAxis + 1, "%s", "╭");
         mvwprintw(_window.get(), yAxis + 1, xAxis + xSize, "%s", "╮");
         mvwprintw(_window.get(), yAxis + ySize, xAxis + 1, "%s", "╰");
         mvwprintw(_window.get(), yAxis + ySize, xAxis + xSize, "%s", "╯");
+        wattroff(_window.get(), COLOR_PAIR(colorId));
     }
 }
-
-// void NcursesDisplay::drawTileGrid(const widget::AWidget &widget) const
-// {
-//     if (widget.type == widget::WidgetType::TILE_GRID) {
-//         widget::TileGrid tileGrid = dynamic_cast<const widget::TileGrid &>(
-//             widget);
-//
-//         for (std::size_t i = 0; i < tileGrid.getRow(); ++i) {
-//             for (std::size_t j = 0; j < tileGrid.getColumn(); ++j) {
-//                 drawTile(tileGrid[i][j]);
-//             }
-//         }
-//     }
-// }
 
 bool NcursesDisplay::handleKeyMouse(int /*character*/, widget::Event &event)
 {
@@ -280,25 +273,31 @@ bool NcursesDisplay::handleKeyMouse(int /*character*/, widget::Event &event)
     if (getmouse(&mouseEvent) != OK)
         return false;
 
+    event.mouseButton.x = mouseEvent.x - 1;
+    event.mouseButton.y = mouseEvent.y - 1;
+
     if (mouseEvent.bstate & BUTTON1_PRESSED) {
         event.type = widget::Event::EventType::MOUSE_BUTTON_PRESSED;
         event.mouseButton.button = widget::MouseButton::LEFT;
+        return true;
     }
     if (mouseEvent.bstate & BUTTON1_RELEASED) {
         event.type = widget::Event::EventType::MOUSE_BUTTON_RELEASED;
         event.mouseButton.button = widget::MouseButton::LEFT;
+        return true;
     }
     if (mouseEvent.bstate & BUTTON3_PRESSED) {
         event.type = widget::Event::EventType::MOUSE_BUTTON_PRESSED;
         event.mouseButton.button = widget::MouseButton::RIGHT;
+        return true;
     }
     if (mouseEvent.bstate & BUTTON3_RELEASED) {
         event.type = widget::Event::EventType::MOUSE_BUTTON_RELEASED;
         event.mouseButton.button = widget::MouseButton::RIGHT;
+        return true;
     }
-    event.mouseButton.x = mouseEvent.x - 1;
-    event.mouseButton.y = mouseEvent.y - 1;
-    return true;
+
+    return false;
 }
 
 bool NcursesDisplay::handleKey(const int character, widget::Event &event) const
