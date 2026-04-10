@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
-    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppCodeGeneration" type="string" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -20,6 +21,7 @@
       <config projectName="arcade" targetName="game_interface" />
       <config projectName="arcade" targetName="arcade_ncurses" />
       <config projectName="arcade" targetName="arcade" />
+      <config projectName="arcade" targetName="arcade_sdl" />
       <config projectName="arcade" targetName="dl_loader" />
       <config projectName="arcade" targetName="display_interface" />
       <config projectName="arcade" targetName="widget" />
@@ -31,8 +33,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44f09752-931c-4a13-a049-cf1fb4ac11a7" name="Changes" comment="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates">
-      <change beforePath="$PROJECT_DIR$/src/Core/NameEntryScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/NameEntryScene.cpp" afterDir="false" />
+    <list default="true" id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Core.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/GameScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameScene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ListMenuScene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,10 +46,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="54" />
+    <option name="cachedIndexableFilesCount" value="59" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="GHAISettings"><![CDATA[{
+  "automaticallyGenerateSummary": false
+}]]></component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -53,21 +69,17 @@
     &quot;assignee&quot;: &quot;janumaruku&quot;
   }
 }</component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:janumaruku/Arcade.git&quot;,
     &quot;accountId&quot;: &quot;f94d0993-dc90-4f79-9b11-991c9c71d54a&quot;
   }
 }</component>
+  <component name="LLMProjectSettings">
+    <option name="turned_on" value="false" />
+  </component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="LFN4EjOS" />
+    <option name="directoryName" value="allVLFxw" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -82,7 +94,7 @@
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="3C51Qcg194VgYKpluGupZD7sqh7" />
+  <component name="ProjectId" id="3CAVifwQDK1GQRZk2UOrNZ5iWeo" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -92,7 +104,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.arcade.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -107,7 +118,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "#13 on ACP-12-Implement-main-menu-view",
+    "git-widget-placeholder": "ACP-12-Implement-main-menu-view",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -115,6 +126,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "ml.llm.LLMProjectConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -125,12 +137,17 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="libs/arcade_ncurses.so" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade">
+    <configuration name="arcade" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="arcade" RUN_TARGET_NAME="arcade" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="arcade_ncurses" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade_ncurses" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="arcade_sdl" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="arcade" TARGET_NAME="arcade_sdl" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -158,6 +175,7 @@
     <list>
       <item itemvalue="CMake Application.arcade" />
       <item itemvalue="CMake Application.arcade_ncurses" />
+      <item itemvalue="CMake Application.arcade_sdl" />
       <item itemvalue="CMake Application.dl_loader" />
       <item itemvalue="CMake Application.display_interface" />
       <item itemvalue="CMake Application.game_interface" />
@@ -166,47 +184,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="44f09752-931c-4a13-a049-cf1fb4ac11a7" name="Changes" comment="" />
-      <created>1775660602648</created>
+      <changelist id="87eba22c-aaf7-4f49-8418-27e77c72bff2" name="Changes" comment="" />
+      <created>1775828489446</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1775660602648</updated>
-      <workItem from="1775660603760" duration="6861000" />
-      <workItem from="1775678546418" duration="12394000" />
+      <updated>1775828489446</updated>
+      <workItem from="1775828490705" duration="80000" />
+      <workItem from="1775828590000" duration="11369000" />
     </task>
-    <task id="LOCAL-00001" summary="refactor(GameListScene): improve code readability and mouse event handling in `GameListScene`">
+    <task id="LOCAL-00001" summary="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display">
       <option name="closed" value="true" />
-      <created>1775670005670</created>
+      <created>1775832798955</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1775670005670</updated>
+      <updated>1775832798956</updated>
     </task>
-    <task id="LOCAL-00002" summary="feat(Core): ACP-12 #comment Implement `DisplayListScene` for managing display library UI and navigation in Core">
-      <option name="closed" value="true" />
-      <created>1775723138640</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1775723138640</updated>
-    </task>
-    <task id="LOCAL-00003" summary="fix(Core): ACP-12 #comment Fix user imput handling for navigation between scenes">
-      <option name="closed" value="true" />
-      <created>1775725682635</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1775725682635</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates">
-      <option name="closed" value="true" />
-      <created>1775780516204</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1775780516204</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,10 +213,7 @@
     <isAutomaticBootstrapAfterUpdate value="false" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor(GameListScene): improve code readability and mouse event handling in `GameListScene`" />
-    <MESSAGE value="feat(Core): ACP-12 #comment Implement `DisplayListScene` for managing display library UI and navigation in Core" />
-    <MESSAGE value="fix(Core): ACP-12 #comment Fix user imput handling for navigation between scenes" />
-    <MESSAGE value="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Core): ACP-12 #comment Add new scenes for `GameScene`, `ListMenuScene`, and `NameEntryScene` with navigation and event handling updates" />
+    <MESSAGE value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(display): ACP-12 #comment fix color usage and mouse input for ncurses display" />
   </component>
 </project>

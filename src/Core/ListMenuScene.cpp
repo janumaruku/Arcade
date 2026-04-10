@@ -13,9 +13,11 @@ namespace arcade {
 namespace core {
 
 Core::ListMenuScene::ListMenuScene(Core &core, AScene *next, AScene *prev):
-    AScene{core, next, prev}, _tab{widget::Vec2{.x = 0, .y = 0}}
-{
-}
+    AScene{core, next, prev},
+    _tab{widget::Vec2{.x = 0, .y = 0}},
+    _prevButton{widget::Vec2{.x = 0, .y = 0}},
+    _nextButton{widget::Vec2{.x = 0, .y = 0}}
+{}
 
 void Core::ListMenuScene::handleEvent(const widget::Event &event)
 {
@@ -26,7 +28,7 @@ void Core::ListMenuScene::handleEvent(const widget::Event &event)
     case widget::Event::EventType::KEY_PRESSED:
         handleKeyEvent(event);
         return;
-    case widget::Event::EventType::MOUSE_BUTTON_PRESSED:
+    case widget::Event::EventType::MOUSE_BUTTON_RELEASED:
         handleMouseEvent(event);
         return;
     default:
@@ -35,8 +37,7 @@ void Core::ListMenuScene::handleEvent(const widget::Event &event)
 }
 
 void Core::ListMenuScene::update()
-{
-}
+{}
 
 void Core::ListMenuScene::draw()
 {
@@ -51,12 +52,18 @@ void Core::ListMenuScene::draw()
     core.getCurrentDisplay()->draw(_descriptionMessage);
     if (!_errorMessage.text.empty())
         core.getCurrentDisplay()->draw(_errorMessage);
+
+    core.getCurrentDisplay()->draw(_keyHelpText);
+    core.getCurrentDisplay()->draw(_prevButton);
+    core.getCurrentDisplay()->draw(_prevButtonText);
+    core.getCurrentDisplay()->draw(_nextButton);
+    core.getCurrentDisplay()->draw(_nextButtonText);
 }
 
 void Core::ListMenuScene::buildTab()
 {
     _tab.type = widget::WidgetType::RECTANGLE;
-    _tab.setSize(widget::Vec2{.x = 70, .y = 15});
+    _tab.setSize(widget::Vec2{.x = 50, .y = 15});
     const auto [winWidth, winHeight] =
         core.getCurrentDisplay()->getWindowSize();
     _tab.position.x = (winWidth / 2) - (_tab.getSize().x / 2);
@@ -86,7 +93,7 @@ void Core::ListMenuScene::buildCursors()
 
 void Core::ListMenuScene::buildList()
 {
-    auto yAxis = _tab.position.y + 2;
+    auto yAxis       = _tab.position.y + 2;
     const auto items = getItemNames();
 
     for (const auto &name: items) {
@@ -115,6 +122,51 @@ void Core::ListMenuScene::buildErrorMessage()
         _errorMessage.text = "Error: No library available";
 }
 
+void Core::ListMenuScene::buildKeyHelpText()
+{
+    _keyHelpText.type      = widget::WidgetType::TEXT;
+    _keyHelpText.textColor = widget::Color::CYAN;
+    _keyHelpText.text =
+        "[ENTER | N | RIGHT] Next, [P | LEFT] Prev, [UP | DOWN] Select";
+    _keyHelpText.position = widget::Vec2{.x = _tab.position.x +
+            (_tab.getSize().x / 2) - (_keyHelpText.text.size() / 2),
+        .y = _errorMessage.position.y + 3};
+}
+
+void Core::ListMenuScene::buildNavigationButtons()
+{
+    constexpr std::size_t buttonWidth  = 12;
+    constexpr std::size_t buttonHeight = 3;
+
+    _prevButton.type = widget::WidgetType::RECTANGLE;
+    _prevButton.setSize(widget::Vec2{.x = buttonWidth, .y = buttonHeight});
+    _prevButton.position = widget::Vec2{
+        .x = _tab.position.x - buttonWidth - 3, .y = _tab.position.y + 5};
+    _prevButton.fillColor              = widget::Color::BLACK;
+    _prevButton.decoration.style       = widget::BorderStyle::SOLID;
+    _prevButton.decoration.borderColor = widget::Color::WHITE;
+
+    _prevButtonText.type     = widget::WidgetType::TEXT;
+    _prevButtonText.text     = "Previous";
+    _prevButtonText.position = widget::Vec2{.x = _prevButton.position.x +
+            (_prevButton.getSize().x / 2 - _prevButtonText.text.size() / 2),
+        .y = _prevButton.position.y + 1};
+
+    _nextButton.type = widget::WidgetType::RECTANGLE;
+    _nextButton.setSize(widget::Vec2{.x = buttonWidth, .y = buttonHeight});
+    _nextButton.position = widget::Vec2{
+        .x = _tab.position.x + _tab.getSize().x + 3, .y = _tab.position.y + 5};
+    _nextButton.fillColor              = widget::Color::BLACK;
+    _nextButton.decoration.style       = widget::BorderStyle::SOLID;
+    _nextButton.decoration.borderColor = widget::Color::WHITE;
+
+    _nextButtonText.type     = widget::WidgetType::TEXT;
+    _nextButtonText.text     = "Next";
+    _nextButtonText.position = widget::Vec2{.x = _nextButton.position.x +
+            (_nextButton.getSize().x / 2 - _nextButtonText.text.size() / 2),
+        .y = _nextButton.position.y + 1};
+}
+
 void Core::ListMenuScene::buildWidgets()
 {
     buildTab();
@@ -122,6 +174,8 @@ void Core::ListMenuScene::buildWidgets()
     buildCursors();
     buildList();
     buildErrorMessage();
+    buildKeyHelpText();
+    buildNavigationButtons();
 }
 
 void Core::ListMenuScene::moveCursorDown()
@@ -154,7 +208,7 @@ void Core::ListMenuScene::moveCursorUp()
 
 void Core::ListMenuScene::goToNextScene() const
 {
-    if (nextScene != nullptr) {
+    if (nextScene != nullptr && !_libraries.empty()) {
         onSelect();
         core._currentScene = nextScene;
     }
@@ -167,8 +221,7 @@ void Core::ListMenuScene::goToPreviousScene() const
 }
 
 void Core::ListMenuScene::onSelect() const
-{
-}
+{}
 
 void Core::ListMenuScene::handleKeyEvent(const widget::Event &event)
 {
@@ -201,10 +254,31 @@ void Core::ListMenuScene::handleMouseEvent(const widget::Event &event)
     if (event.mouseButton.button != widget::MouseButton::LEFT)
         return;
 
+    const std::size_t eventX = event.mouseButton.x;
+    const std::size_t eventY = event.mouseButton.y;
+
+    const std::size_t prevMinX = _prevButton.position.x.getValue();
+    const std::size_t prevMaxX = prevMinX + _prevButton.getSize().x.getValue();
+    const std::size_t prevMinY = _prevButton.position.y.getValue();
+    const std::size_t prevMaxY = prevMinY + _prevButton.getSize().y.getValue();
+    if (eventX >= prevMinX && eventX < prevMaxX && eventY >= prevMinY &&
+        eventY < prevMaxY) {
+        goToPreviousScene();
+        return;
+    }
+
+    const std::size_t nextMinX = _nextButton.position.x.getValue();
+    const std::size_t nextMaxX = nextMinX + _nextButton.getSize().x.getValue();
+    const std::size_t nextMinY = _nextButton.position.y.getValue();
+    const std::size_t nextMaxY = nextMinY + _nextButton.getSize().y.getValue();
+    if (eventX >= nextMinX && eventX < nextMaxX && eventY >= nextMinY &&
+        eventY < nextMaxY) {
+        goToNextScene();
+        return;
+    }
+
     for (auto elem = _libraries.begin(); elem != _libraries.end(); ++elem) {
-        const std::size_t eventX = event.mouseButton.x;
-        const std::size_t eventY = event.mouseButton.y;
-        const std::size_t minX   = _cursorLeft.position.x.getValue();
+        const std::size_t minX = _cursorLeft.position.x.getValue();
         const std::size_t maxX =
             _cursorRight.position.x.getValue() + _cursorLeft.text.size();
         const std::size_t yAxis = elem->position.y.getValue();
